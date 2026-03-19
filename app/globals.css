@@ -35,3 +35,28 @@ body {
 .animate-marquee {
   animation: marquee 20s linear infinite;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track (holder) is transparent until hovered */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Handle (the bar) */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 77, 0, 0.3);
+  border-radius: 10px;
+}
+
+/* Handle on hover (makes the bar brighter) */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 123, 0, 0.8);
+}
