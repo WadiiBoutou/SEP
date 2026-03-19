@@ -88,7 +88,7 @@ export default function Navbar() {
 
               <Link
                 href="/contact"
-                className="bg-brand-gold text-dark-bg px-5 py-3 text-xs uppercase tracking-widest font-bold font-sans rounded-none hover:bg-white transition-colors"
+                className="bg-brand-orange text-dark-bg px-5 py-3 text-xs uppercase tracking-widest font-bold font-sans rounded-none hover:bg-brand-heat hover:shadow-[0_0_15px_rgba(255,77,0,0.5)] transition-all"
               >
                 {t("Devis Gratuit", "احصل على عرض")}
               </Link>
@@ -116,7 +116,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-3xl font-syne font-bold text-white hover:text-brand-gold transition-colors"
+                className="text-3xl font-syne font-bold text-white hover:text-brand-orange hover:drop-shadow-[0_0_10px_rgba(255,123,0,0.5)] transition-all"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
@@ -129,14 +129,14 @@ export default function Navbar() {
           <div className="flex items-center gap-4 text-sm font-bold font-sans bg-white/5 rounded-full px-6 py-2">
             <button
               onClick={() => { setLang("fr"); setMobileMenuOpen(false); }}
-              className={lang === "fr" ? "text-brand-gold" : "text-white/50"}
+              className={lang === "fr" ? "text-brand-orange drop-shadow-[0_0_8px_rgba(255,123,0,0.5)]" : "text-white/50"}
             >
               FR
             </button>
             <span className="text-white/20">|</span>
             <button
               onClick={() => { setLang("ar"); setMobileMenuOpen(false); }}
-              className={lang === "ar" ? "text-brand-gold" : "text-white/50"}
+              className={lang === "ar" ? "text-brand-orange drop-shadow-[0_0_8px_rgba(255,123,0,0.5)]" : "text-white/50"}
             >
               AR
             </button>
@@ -145,7 +145,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="bg-brand-gold text-dark-bg px-8 py-4 text-sm uppercase tracking-widest font-bold font-sans rounded-none"
+            className="bg-brand-orange hover:bg-brand-heat hover:shadow-[0_0_20px_rgba(255,77,0,0.5)] text-dark-bg transition-all px-8 py-4 text-sm uppercase tracking-widest font-bold font-sans rounded-none"
           >
             {t("Devis Gratuit", "احصل على عرض")}
           </Link>

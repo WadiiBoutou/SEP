@@ -61,8 +61,9 @@ export default function HeroSection() {
       ref={containerRef}
       className="relative min-h-screen pt-32 pb-20 flex flex-col justify-center overflow-hidden bg-brand-dark-bg"
     >
-      {/* Background radial gradient */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-blue/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none mix-blend-screen" />
+      {/* Background radial gradients for heat spotlighting */}
+      <div className="absolute top-[-10%] right-[-10%] w-[900px] h-[900px] bg-brand-orange/30 rounded-full blur-[150px] pointer-events-none mix-blend-screen" />
+      <div className="absolute top-[20%] right-[20%] w-[600px] h-[600px] bg-brand-heat/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
       
       {/* Grain noise overlay */}
       <div 
@@ -78,15 +79,15 @@ export default function HeroSection() {
           {/* Left Column */}
           <div className="w-full lg:w-[60%] flex flex-col">
             <div className="overflow-hidden mb-8">
-              <span className="hero-line block font-sans text-brand-gold text-xs uppercase tracking-[0.2em] font-bold">
-                {t("Énergie Renouvelable · Maroc", "طاقة متجددة · المغرب")}
+              <span className="hero-line block font-sans text-brand-orange text-xs uppercase tracking-[0.2em] font-bold drop-shadow-[0_0_8px_rgba(255,123,0,0.5)]">
+                {t("Énergie Solaire · Maroc", "طاقة شمسية · المغرب")}
               </span>
             </div>
 
             <h1 className="font-syne font-extrabold text-[70px] leading-[0.9] tracking-[-0.04em] md:text-[90px] lg:text-[110px] text-white overflow-hidden mb-8">
-              <span className="hero-line block">{t("L'Énergie", "الطاقة")}</span>
+              <span className="hero-line block">{t("L'Énergie", "الطاقة")} <span className="text-brand-glow drop-shadow-[0_0_15px_rgba(255,170,0,0.4)]">{t("SOLAIRE", "الشمسية")}</span></span>
               <span className="hero-line block">{t("Qui Change", "التي تغير")}</span>
-              <span className="hero-line block text-brand-gold">{t("Tout.", "كل شيء.")}</span>
+              <span className="hero-line block text-brand-heat drop-shadow-[0_0_20px_rgba(255,77,0,0.6)]">{t("Tout.", "كل شيء.")}</span>
             </h1>
 
             <div className="overflow-hidden mb-12">
@@ -102,13 +103,13 @@ export default function HeroSection() {
               <div className="hero-line flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <Link
                   href="/contact"
-                  className="bg-brand-gold hover:bg-white text-dark-bg transition-colors px-8 py-4 text-xs uppercase tracking-widest font-bold font-sans rounded-none"
+                  className="bg-brand-orange hover:bg-brand-heat hover:shadow-[0_0_20px_rgba(255,77,0,0.5)] text-dark-bg transition-all px-8 py-4 text-xs uppercase tracking-widest font-bold font-sans rounded-none"
                 >
                   {t("Obtenir un Devis", "احصل على عرض")}
                 </Link>
                 <Link
                   href="/services"
-                  className="text-white hover:text-brand-gold hover:border-brand-gold transition-colors font-sans text-sm border-b border-brand-gold pb-1"
+                  className="text-white hover:text-brand-glow hover:border-brand-glow hover:drop-shadow-[0_0_8px_rgba(255,170,0,0.3)] transition-all font-sans text-sm border-b border-white/30 pb-1"
                 >
                   {t("Découvrir Nos Services", "اكتشف خدماتنا")}
                 </Link>
@@ -119,8 +120,8 @@ export default function HeroSection() {
           {/* Right Column */}
           <div className="w-full lg:w-[40%] flex justify-center lg:justify-end">
             <div className="hero-image relative w-full max-w-[440px] aspect-[4/5] transform rotate-2">
-              {/* Offset Gold Border */}
-              <div className="absolute inset-0 border border-brand-gold translate-x-3 translate-y-3 pointer-events-none z-0" />
+              {/* Offset Orange Border to simulate heat/sunlight edge */}
+              <div className="absolute inset-0 border-2 border-brand-orange translate-x-3 translate-y-3 pointer-events-none z-0 shadow-[0_0_20px_rgba(255,123,0,0.3)]" />
               
               <div className="relative w-full h-full overflow-hidden z-10 border border-white/10 bg-off-dark">
                 <Image
