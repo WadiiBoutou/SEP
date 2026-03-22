@@ -334,7 +334,7 @@ export default function ServicesPage() {
             <div className="absolute inset-y-0 right-0 w-[25%] lg:bg-gradient-to-l from-dark-bg to-transparent z-10 pointer-events-none" />
 
             <Image
-              src="/images/irrigation.jpg"
+              src="/images/irrigation.webp"
               alt="Pompage solaire et irrigation agricole"
               fill
               className="object-cover object-center rounded-none"
@@ -523,7 +523,7 @@ export default function ServicesPage() {
             
             <div className="relative w-[180px] h-[180px] md:w-[220px] md:h-[220px] shrink-0 transform -rotate-6 drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
               <Image 
-                src="/3D SEP logo.png"
+                src="/3D SEP logo.webp"
                 alt="3D SEP Logo"
                 fill
                 className="object-contain contrast-125 brightness-110"
@@ -641,7 +641,7 @@ export default function ServicesPage() {
       <section className="cta-section relative w-full py-32 lg:py-48 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/powerline.jpg"
+            src="/images/powerline.webp"
             alt="Aerial view"
             fill
             className="object-cover object-center"

@@ -75,7 +75,7 @@ export default function AboutStrip() {
           {/* Main Large Image */}
           <div className="about-image-wrapper absolute top-0 right-0 w-[75%] aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-0 transform rotate-2">
             <Image
-              src="/images/solar_field.png"
+              src="/images/solar_field.webp"
               alt="Solar Field"
               fill
               className="object-cover brightness-110 contrast-110"
@@ -87,7 +87,7 @@ export default function AboutStrip() {
           {/* Secondary Smaller Image */}
           <div className="about-image-wrapper absolute -bottom-10 left-0 w-[55%] aspect-[5/6] overflow-hidden rounded-2xl border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.9)] z-10 translate-x-4 transform rotate-3">
             <Image
-              src="/images/modern_solar_home.png"
+              src="/images/modern_solar_home.webp"
               alt="Modern Solar Home"
               fill
               className="object-cover brightness-110 contrast-110"

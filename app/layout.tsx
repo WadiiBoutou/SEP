@@ -34,11 +34,11 @@ export const metadata: Metadata = {
   description: "Solutions solaires et hydrauliques à Agadir, Maroc.",
   icons: {
     icon: [
-      { url: "/LOGO1.png" },
-      { url: "/LOGO1.png", sizes: "32x32" },
+      { url: "/LOGO1.webp?v=3", type: "image/webp" },
+      { url: "/LOGO1.webp?v=3", sizes: "32x32", type: "image/webp" },
     ],
-    apple: "/LOGO1.png",
-    shortcut: "/LOGO1.png",
+    apple: "/LOGO1.webp?v=3",
+    shortcut: "/LOGO1.webp?v=3",
   },
 };
 

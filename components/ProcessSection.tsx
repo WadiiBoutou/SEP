@@ -14,19 +14,19 @@ const processSteps = [
     num: "01",
     title: "Consultation",
     desc: "Analyse approfondie de votre consommation et de votre potentiel solaire.",
-    img: "/images/modern_solar_home.png",
+    img: "/images/modern_solar_home.webp",
   },
   {
     num: "02",
     title: "Conception",
     desc: "Étude technique personnalisée et plan d'implantation détaillé.",
-    img: "/images/solar_field.png",
+    img: "/images/solar_field.webp",
   },
   {
     num: "03",
     title: "Mise en œuvre",
     desc: "Installation rigoureuse par nos techniciens experts certifiés.",
-    img: "/images/house.png",
+    img: "/images/house.webp",
   },
   {
     num: "04",

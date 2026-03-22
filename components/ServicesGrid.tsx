@@ -15,7 +15,7 @@ export default function ServicesGrid() {
         "Installation haut de gamme d'équipements photovoltaïques pour particuliers et industriels.",
         "تركيب معدات كهروضوئية عالية الجودة للأفراد والصناعيين."
       ),
-      image: "/images/modern_solar_home.png",
+      image: "/images/modern_solar_home.webp",
     },
     {
       id: "02",
@@ -24,7 +24,7 @@ export default function ServicesGrid() {
         "Contrats de maintenance préventive et curative pour maximiser votre production solaire.",
         "عقود صيانة وقائية وعلاجية لزيادة إنتاجك الشمسي إلى أقصى حد."
       ),
-      image: "/images/maintenance3.jpg",
+      image: "/images/maintenance3.webp",
     },
     {
       id: "03",
@@ -33,7 +33,7 @@ export default function ServicesGrid() {
         "Conception de pompage solaire et gestion des ressources hydrauliques durables.",
         "تصميم الضخ الشمسي وإدارة الموارد المائية المستدامة."
       ),
-      image: "/images/pump.png",
+      image: "/images/pump.webp",
     },
   ];
 

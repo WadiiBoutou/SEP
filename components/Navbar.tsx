@@ -39,7 +39,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-4 z-50">
             <div className="relative h-[60px] w-[60px]">
               <Image
-                src="/LOGO1.png"
+                src="/LOGO1.webp"
                 alt="Sud Extra Power Logo"
                 fill
                 className="object-contain"

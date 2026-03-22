@@ -22,13 +22,13 @@ function DualImageSection({ t }: { t: any }) {
       id: 'residential', 
       label: t("Résidentiel & Commercial", "سكني وتجاري"), 
       sub: t("Solutions de Toiture", "حلول الأسطح"), 
-      src: '/images/house-with-modern-solar-system-as-a-symbol-of-renewable-energy.jpg?v=2' 
+      src: '/images/house-with-modern-solar-system-as-a-symbol-of-renewable-energy.webp?v=2' 
     },
     { 
       id: 'agriculture', 
       label: t("Agriculture & Industrie", "الزراعة والصناعة"), 
       sub: t("Pompage & Grandes Surfaces", "الضخ والأسطح الكبيرة"), 
-      src: '/images/agro.jpg?v=2' 
+      src: '/images/agro.webp?v=2' 
     },
   ];
 
@@ -227,7 +227,7 @@ export default function AboutPage() {
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/powerline.jpg"
+            src="/images/powerline.webp"
             alt="Powerline background"
             fill
             className="hero-bg-image object-cover object-center"
@@ -454,7 +454,7 @@ export default function AboutPage() {
       <section className="cta-section relative w-full py-32 lg:py-48 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/powerline2.jpg"
+            src="/images/powerline2.webp"
             alt="Aerial view"
             fill
             className="object-cover object-center"

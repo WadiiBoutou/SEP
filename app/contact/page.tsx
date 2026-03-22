@@ -34,18 +34,7 @@ export default function ContactPage() {
         delay: 0.2,
       });
 
-      // SECTION 2 — Info Columns
-      gsap.from(".info-item", {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".contact-main-section",
-          start: "top 80%",
-        },
-      });
+      // SECTION 2 — Info Columns - REMOVED for stability
 
       // SECTION 2 — Form Fields
       gsap.from(".form-field", {
@@ -232,24 +221,7 @@ export default function ContactPage() {
               <div className="font-sans font-light text-[12px] text-white/40">{t("Réponse typique en moins d'une heure.", "رد معتاد في أقل من ساعة.")}</div>
             </a>
 
-            {/* Quote Block Fixed */}
-            <div className="info-item mt-12 relative py-12 px-12 bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden group">
-              <div className="absolute top-0 left-0 w-[4px] h-full bg-brand-orange shadow-[2px_0_15px_rgba(255,123,0,0.4)]" />
-              <svg 
-                className="absolute right-6 top-6 w-16 h-16 text-white/[0.03] group-hover:text-brand-orange/10 transition-colors" 
-                fill="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V4L21.017 4V15C21.017 18.3137 18.3307 21 15.017 21H14.017ZM3 21L3 18C3 16.8954 3.89543 16 5 16H8C8.55228 16 9 15.5523 9 15V9C9 8.44772 8.55228 8 8 8H5C3.89543 8 3 7.10457 3 6V4L10 4V15C10 18.3137 7.31371 21 4 21H3Z" />
-              </svg>
-              <p className="font-sans font-light italic text-[17px] text-white/70 leading-relaxed mb-6 relative z-10 pr-10">
-                &quot;{t("Chaque projet commence par une conversation. Dites-nous où vous en êtes.", "كل مشروع يبدأ بمحادثة. أخبرنا أين وصلت.")}&quot;
-              </p>
-              <div className="font-syne font-bold text-[13px] text-brand-orange tracking-widest uppercase flex items-center gap-3">
-                <div className="w-8 h-[1px] bg-brand-orange/30" />
-                {t("— Équipe SEP", "— فريق SEP")}
-              </div>
-            </div>
+
           </div>
 
           {/* RIGHT COLUMN — Form */}
