@@ -12,7 +12,6 @@ export default function ContactPage() {
   const [budget, setBudget] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
-  const [mapActive, setMapActive] = useState<boolean>(false);
 
   const budgetOptions = [
     { id: "<20k", fr: "< 20 000 MAD", ar: "أقل من 20 000 درهم" },
@@ -126,21 +125,21 @@ export default function ContactPage() {
     <article ref={containerRef} className="bg-dark-bg min-h-screen pt-32 lg:pt-0 overflow-hidden font-sans">
       
       {/* SECTION 1 — PAGE HERO */}
-      <section className="relative min-h-[60vh] flex flex-col justify-center items-center px-6 pt-32 pb-20">
+      <section className="relative h-[50vh] flex flex-col justify-center items-center px-6 pt-20">
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-4xl mx-auto">
           <div className="overflow-hidden mb-6">
-            <span className="hero-line-anim block text-brand-orange text-[12px] font-bold uppercase tracking-[0.3em] drop-shadow-[0_0_8px_rgba(255,123,0,0.4)]">
-              {t("// 04 — CONTACT", "// 04 — اتصل بنا")}
+            <span className="hero-line-anim block text-brand-gold text-[11px] font-medium uppercase tracking-[0.2em]">
+              {t("04 — CONTACT", "04 — اتصل بنا")}
             </span>
           </div>
 
-          <h1 className="font-syne font-extrabold text-[48px] md:text-[80px] lg:text-[110px] leading-[0.9] tracking-[-0.04em] text-white flex flex-col items-center mb-10">
+          <h1 className="font-syne font-extrabold text-[48px] md:text-[64px] lg:text-[clamp(64px,7vw,100px)] leading-[0.88] tracking-[-0.04em] text-white flex flex-col items-center mb-8">
             <div className="overflow-hidden"><span className="hero-line-anim block">{t("Parlons de", "لنتحدث عن")}</span></div>
-            <div className="overflow-hidden"><span className="hero-line-anim block text-brand-orange drop-shadow-[0_0_15px_rgba(255,123,0,0.3)]">{t("Votre Projet.", "مشروعك.")}</span></div>
+            <div className="overflow-hidden"><span className="hero-line-anim block text-brand-gold">{t("Votre Projet.", "مشروعك.")}</span></div>
           </h1>
 
-          <div className="overflow-hidden max-w-[540px]">
-            <p className="hero-line-anim text-lg font-light text-white/70 leading-relaxed mx-auto">
+          <div className="overflow-hidden">
+            <p className="hero-line-anim text-[15px] font-light text-white/55 max-w-[460px] leading-[1.9] mx-auto">
               {t(
                 "Notre équipe répond sous 24h. Pas de jargon, pas de sur-promesse — juste une étude honnête de ce que le solaire peut faire pour vous.",
                 "فريقنا يجيب خلال 24 ساعة. بلا مصطلحات معقدة، بلا وعود مبالغ فيها — مجرد دراسة صادقة لما يمكن أن تقدمه الطاقة الشمسية لك."
@@ -151,64 +150,53 @@ export default function ContactPage() {
       </section>
 
       {/* Thin horizontal separator */}
-      <div className="w-full h-px bg-white/[0.08]" />
+      <div className="w-full h-px bg-white/[0.06]" />
 
       {/* SECTION 2 — MAIN CONTACT BLOCK */}
-      <section className="contact-main-section py-24 lg:py-40 px-6 lg:px-12 container mx-auto">
-        <div className="flex flex-col lg:flex-row gap-20 lg:gap-32 w-full max-w-7xl mx-auto relative items-start">
+      <section className="contact-main-section py-20 lg:py-32 px-6 lg:px-12 container mx-auto">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 w-full max-w-7xl mx-auto relative items-start">
           
           {/* LEFT COLUMN — Contact Info (Sticky) */}
-          <div className="w-full lg:w-[45%] lg:sticky lg:top-[140px]">
-            <h2 className="info-item font-syne font-bold text-[28px] text-white flex items-center gap-4">
-              {t("Retrouvez-nous.", "تجدنا هنا.")}
-              <div className="flex-1 h-[1px] bg-white/10" />
-            </h2>
-            <div className="info-item w-[60px] h-[2px] bg-brand-orange mt-6 mb-12 shadow-[0_0_15px_rgba(255,123,0,0.5)]" />
+          <div className="w-full lg:w-[40%] sticky top-[120px]">
+            <h2 className="info-item font-syne font-bold text-[22px] text-white">{t("Retrouvez-nous.", "تجدنا هنا.")}</h2>
+            <div className="info-item w-[40px] h-[1px] bg-brand-gold mt-4 mb-8" />
 
-            <div className="flex flex-col">
-              {/* Item 1 - Address */}
-              <div className="info-item group flex items-start gap-8 py-10 border-b border-white/[0.05] transition-all hover:bg-white/[0.02]">
-                <div className="w-14 h-14 shrink-0 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-dark-bg transition-all duration-300 shadow-[0_0_15px_rgba(255,123,0,0.1)] group-hover:shadow-[0_0_20px_rgba(255,123,0,0.4)]">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                </div>
+            <div className="flex flex-col border-t border-white/[0.06]">
+              {/* Item 1 */}
+              <div className="info-item flex items-start gap-5 py-5 border-b border-white/[0.06]">
+                <span className="text-brand-gold text-2xl leading-none mt-1">📍</span>
                 <div className="flex flex-col">
-                  <span className="font-sans text-[12px] font-bold uppercase tracking-[0.2em] text-white/50 mb-3">{t("Adresse", "العنوان")}</span>
-                  <span className="font-sans text-[16px] font-medium text-white leading-relaxed">
-                    Swalem, Route de Tiznit, Inchaden, Chtouka Ait Baha — Agadir, Maroc
+                  <span className="font-sans text-[11px] font-light uppercase tracking-[0.2em] text-white/45 mb-1">{t("Adresse", "العنوان")}</span>
+                  <span className="font-sans text-[14px] font-medium text-white leading-relaxed">
+                    Route de Tiznit, Inchaden, Chtouka Ait Baha — Agadir, Maroc
                   </span>
                 </div>
               </div>
               
-              {/* Item 2 - Phone */}
-              <div className="info-item group flex items-start gap-8 py-10 border-b border-white/[0.05] transition-all hover:bg-white/[0.02]">
-                <div className="w-14 h-14 shrink-0 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-dark-bg transition-all duration-300 shadow-[0_0_15px_rgba(255,123,0,0.1)] group-hover:shadow-[0_0_20px_rgba(255,123,0,0.4)]">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                </div>
+              {/* Item 2 */}
+              <div className="info-item flex items-start gap-5 py-5 border-b border-white/[0.06]">
+                <span className="text-brand-gold text-2xl leading-none mt-1">📞</span>
                 <div className="flex flex-col">
-                  <span className="font-sans text-[12px] font-bold uppercase tracking-[0.2em] text-white/50 mb-3">{t("Téléphone", "الهاتف")}</span>
-                  <span className="font-sans text-[18px] font-bold text-white group-hover:text-brand-orange transition-colors" dir="ltr">+212 6 12 61 93 29</span>
+                  <span className="font-sans text-[11px] font-light uppercase tracking-[0.2em] text-white/45 mb-1">{t("Téléphone", "الهاتف")}</span>
+                  <span className="font-sans text-[14px] font-medium text-white" dir="ltr">+212 6 12 61 93 29</span>
                 </div>
               </div>
 
-              {/* Item 3 - Email */}
-              <div className="info-item group flex items-start gap-8 py-10 border-b border-white/[0.05] transition-all hover:bg-white/[0.02]">
-                <div className="w-14 h-14 shrink-0 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-dark-bg transition-all duration-300 shadow-[0_0_15px_rgba(255,123,0,0.1)] group-hover:shadow-[0_0_20px_rgba(255,123,0,0.4)]">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </div>
+              {/* Item 3 */}
+              <div className="info-item flex items-start gap-5 py-5 border-b border-white/[0.06]">
+                <span className="text-brand-gold text-2xl leading-none mt-1">✉️</span>
                 <div className="flex flex-col">
-                  <span className="font-sans text-[12px] font-bold uppercase tracking-[0.2em] text-white/50 mb-3">{t("Email", "البريد الإلكتروني")}</span>
-                  <span className="font-sans text-[16px] font-medium text-white group-hover:text-brand-orange transition-colors">sudextrapower@gmail.com</span>
+                  <span className="font-sans text-[11px] font-light uppercase tracking-[0.2em] text-white/45 mb-1">{t("Email", "البريد الإلكتروني")}</span>
+                  <span className="font-sans text-[14px] font-medium text-white">contact@sudextrapower.ma</span>
                 </div>
               </div>
 
-              {/* Item 4 - Hours */}
-              <div className="info-item group flex items-start gap-8 py-10 border-b border-white/[0.05] transition-all hover:bg-white/[0.02]">
-                <div className="w-14 h-14 shrink-0 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-dark-bg transition-all duration-300 shadow-[0_0_15px_rgba(255,123,0,0.1)] group-hover:shadow-[0_0_20px_rgba(255,123,0,0.4)]">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                </div>
+              {/* Item 4 */}
+              <div className="info-item flex items-start gap-5 py-5 border-b border-white/[0.06]">
+                <span className="text-brand-gold text-2xl leading-none mt-1">🕒</span>
                 <div className="flex flex-col">
-                  <span className="font-sans text-[12px] font-bold uppercase tracking-[0.2em] text-white/50 mb-3">{t("Horaires", "ساعات العمل")}</span>
-                  <span className="font-sans text-[16px] font-medium text-white/90">
+                  <span className="font-sans text-[11px] font-light uppercase tracking-[0.2em] text-white/45 mb-1">{t("Horaires", "ساعات العمل")}</span>
+                  <span className="font-sans text-[14px] font-medium text-white">
                     {t("Lundi – Samedi, 8h00 – 18h00", "الإثنين – السبت، 8:00 صباحاً – 6:00 مساءً")}
                   </span>
                 </div>
@@ -217,36 +205,30 @@ export default function ContactPage() {
 
             {/* WhatsApp Block */}
             <a 
-              href="https://wa.me/212612619329?text=Bonjour%20l'equipe%20SEP%2C%20je%20souhaiterais%20obtenir%20des%20informations%20sur%20vos%20solutions%20d'energie%20solaire." 
+              href="https://wa.me/212612619329" 
               target="_blank" 
               rel="noreferrer"
-              className="info-item block bg-white/[0.03] border border-white/5 rounded-2xl p-6 mt-12 hover:border-brand-orange/30 hover:bg-brand-orange/[0.03] transition-all duration-300 group"
+              className="info-item block bg-[#0F2035] border border-[#25D366]/25 rounded-none p-5 mt-10 hover:border-[#25D366]/50 hover:bg-[#25D366]/[0.04] transition-colors duration-300 group"
             >
-              <div className="font-sans font-light text-[13px] text-white/50 mb-3">{t("Préférez-vous WhatsApp ?", "هل تفضل واتساب؟")}</div>
-              <div className="flex items-center gap-4 mb-2">
-                <svg viewBox="0 0 24 24" width="24" height="24" className="text-[#25D366] drop-shadow-[0_0_8px_rgba(37,211,102,0.4)]">
+              <div className="font-sans font-light text-[13px] text-white/55 mb-2">{t("Préférez-vous WhatsApp ?", "هل تفضل واتساب؟")}</div>
+              <div className="flex items-center gap-3 mb-1">
+                <svg viewBox="0 0 24 24" width="20" height="20" className="text-[#25D366]">
                   <path fill="currentColor" d="M12.031 0C5.385 0 0 5.383 0 12.028c0 2.126.554 4.2 1.604 6.023L.109 23.518l5.626-1.474a12.007 12.007 0 0 0 6.296 1.765h.004C18.675 23.809 24.062 18.423 24.062 11.78 24.062 5.132 18.681 0 12.031 0zm0 21.808a9.982 9.982 0 0 1-5.088-1.391l-.364-.216-3.778.991.996-3.684-.236-.376A9.957 9.957 0 0 1 2.016 11.78c0-5.522 4.494-10.016 10.018-10.016 5.525 0 10.018 4.496 10.018 10.018 0 5.521-4.493 10.018-10.021 10.026zm5.503-7.518c-.302-.151-1.787-.881-2.064-.982-.276-.101-.478-.151-.678.151-.202.302-.78 1.054-.954 1.255-.176.202-.352.226-.653.075-.302-.15-1.275-.47-2.428-1.501-.896-.803-1.5-1.795-1.676-2.097-.176-.302-.019-.465.132-.616.136-.135.302-.352.453-.527.151-.176.202-.302.302-.502.101-.202.05-.377-.025-.528-.076-.151-.678-1.631-.929-2.234-.244-.588-.492-.508-.678-.517-.176-.008-.377-.008-.578-.008s-.527.075-.804.376c-.276.302-1.054 1.03-1.054 2.511 0 1.482 1.08 2.913 1.23 3.114.151.202 2.123 3.238 5.144 4.542.719.31 1.28.495 1.717.633.722.229 1.38.197 1.898.119.58-.088 1.787-.73 2.038-1.436.252-.705.252-1.309.176-1.436-.075-.126-.276-.202-.578-.353z" />
                 </svg>
-                <span className="font-sans font-bold text-[18px] text-white" dir="ltr">+212 6 12 61 93 29</span>
+                <span className="font-sans font-semibold text-[16px] text-white" dir="ltr">+212 6 12 61 93 29</span>
               </div>
               <div className="font-sans font-light text-[12px] text-white/40">{t("Réponse typique en moins d'une heure.", "رد معتاد في أقل من ساعة.")}</div>
             </a>
 
-            {/* Quote Block Fixed */}
-            <div className="info-item mt-12 relative py-12 px-12 bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden group">
-              <div className="absolute top-0 left-0 w-[4px] h-full bg-brand-orange shadow-[2px_0_15px_rgba(255,123,0,0.4)]" />
-              <svg 
-                className="absolute right-6 top-6 w-16 h-16 text-white/[0.03] group-hover:text-brand-orange/10 transition-colors" 
-                fill="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V4L21.017 4V15C21.017 18.3137 18.3307 21 15.017 21H14.017ZM3 21L3 18C3 16.8954 3.89543 16 5 16H8C8.55228 16 9 15.5523 9 15V9C9 8.44772 8.55228 8 8 8H5C3.89543 8 3 7.10457 3 6V4L10 4V15C10 18.3137 7.31371 21 4 21H3Z" />
-              </svg>
-              <p className="font-sans font-light italic text-[17px] text-white/70 leading-relaxed mb-6 relative z-10 pr-10">
-                &quot;{t("Chaque projet commence par une conversation. Dites-nous où vous en êtes.", "كل مشروع يبدأ بمحادثة. أخبرنا أين وصلت.")}&quot;
+            {/* Quote Block */}
+            <div className="info-item mt-8 relative pl-6">
+              <span className="absolute -left-2 -top-4 font-syne font-extrabold text-[64px] text-brand-gold opacity-30 leading-none">
+                "
+              </span>
+              <p className="font-sans font-light italic text-[14px] text-white/60 leading-relaxed mb-3 relative z-10">
+                {t("Chaque projet commence par une conversation. Dites-nous où vous en êtes.", "كل مشروع يبدأ بمحادثة. أخبرنا أين وصلت.")}
               </p>
-              <div className="font-syne font-bold text-[13px] text-brand-orange tracking-widest uppercase flex items-center gap-3">
-                <div className="w-8 h-[1px] bg-brand-orange/30" />
+              <div className="font-sans font-medium text-[12px] text-brand-gold">
                 {t("— Équipe SEP", "— فريق SEP")}
               </div>
             </div>
@@ -397,7 +379,7 @@ export default function ContactPage() {
             <div className="flex flex-col py-6 md:py-0 md:pr-10 w-full md:w-1/3">
               <span className="font-sans font-light text-[11px] text-brand-gold uppercase tracking-[0.2em] mb-2">{t("Bureau Principal", "المكتب الرئيسي")}</span>
               <span className="font-sans font-medium text-[14px] text-white leading-relaxed">
-                {t("Swalem, Route de Tiznit, Inchaden", "سوالم، طريق تيزنيت، إنشادن")}<br />
+                {t("Route de Tiznit, Inchaden", "طريق تيزنيت، إنشادن")}<br />
                 {t("Chtouka Ait Baha, Agadir", "شتوكة آيت باها، أكادير")}
               </span>
             </div>
@@ -421,20 +403,8 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Map Embed with Scroll Protection */}
-        <div 
-          className="w-full h-[450px] border-t border-white/[0.05] relative cursor-pointer group"
-          onClick={() => setMapActive(true)}
-          onMouseLeave={() => setMapActive(false)}
-        >
-          {!mapActive && (
-            <div className="absolute inset-0 z-20 bg-dark-bg/40 backdrop-blur-[2px] flex items-center justify-center transition-all duration-500 group-hover:bg-dark-bg/20">
-              <div className="px-6 py-3 bg-brand-orange text-dark-bg font-sans font-bold text-xs uppercase tracking-widest shadow-2xl">
-                {t("Cliquer pour Explorer la Carte", "انقر لاستكشاف الخريطة")}
-              </div>
-            </div>
-          )}
-          
+        {/* Map Embed */}
+        <div className="w-full h-[400px] border-t border-white/[0.05] relative pointer-events-auto">
           <iframe
             title="SEP Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108827.39!2d-9.598107!3d30.427755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3b6e9daaaaab%3A0x3f5a9c1f2e8b4d7a!2sAgadir%2C%20Morocco!5e0!3m2!1sen!2sma!4v1700000000000"
@@ -442,8 +412,7 @@ export default function ContactPage() {
             height="100%"
             style={{ 
               border: 0,
-              filter: "grayscale(100%) invert(90%) contrast(85%)",
-              pointerEvents: mapActive ? "auto" : "none"
+              filter: "grayscale(100%) invert(90%) contrast(85%)"
             }}
             allowFullScreen={false}
             loading="lazy"

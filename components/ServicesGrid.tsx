@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -9,92 +10,105 @@ export default function ServicesGrid() {
   const services = [
     {
       id: "01",
-      icon: "⚡",
-      title: t("Installation Solaire PV", "تركيب الطاقة الشمسية للكهرباء"),
+      title: t("Installation Solaire", "تركيب الطاقة الشمسية"),
       desc: t(
-        "Systèmes résidentiels, commerciaux et industriels. Onduleurs hybrides, batteries lithium, monitoring connecté.",
-        "أنظمة سكنية وتجارية وصناعية. محولات هجينة، بطاريات ليثيوم، مراقبة متصلة."
+        "Installation haut de gamme d'équipements photovoltaïques pour particuliers et industriels.",
+        "تركيب معدات كهروضوئية عالية الجودة للأفراد والصناعيين."
       ),
+      image: "/images/modern_solar_home.png",
     },
     {
       id: "02",
-      icon: "💧",
-      title: t("Pompage Solaire", "الضخ بالطاقة الشمسية"),
+      title: t("Maintenance & Optimisation", "الصيانة والتحسين"),
       desc: t(
-        "Pompes immergées et de surface pour l'agriculture, l'irrigation et l'adduction d'eau en zones rurales.",
-        "مضخات غاطسة وسطحية للزراعة والري وتوفير المياه في المناطق القروية."
+        "Contrats de maintenance préventive et curative pour maximiser votre production solaire.",
+        "عقود صيانة وقائية وعلاجية لزيادة إنتاجك الشمسي إلى أقصى حد."
       ),
+      image: "/images/maintenance3.jpg",
     },
     {
       id: "03",
-      icon: "🔆",
-      title: t("Chauffe-eau Solaire", "تسخين المياه بالطاقة الشمسية"),
+      title: t("Solutions Hydrauliques", "الحلول المائية"),
       desc: t(
-        "Capteurs thermiques plans et tubes sous vide pour hôtels, villas et complexes industriels.",
-        "سخانات حرارية مسطحة وأنابيب مفرغة للفنادق والفيلات والمجمعات الصناعية."
+        "Conception de pompage solaire et gestion des ressources hydrauliques durables.",
+        "تصميم الضخ الشمسي وإدارة الموارد المائية المستدامة."
       ),
-    },
-    {
-      id: "04",
-      icon: "🔧",
-      title: t("Maintenance & SAV", "الصيانة وخدمة ما بعد البيع"),
-      desc: t(
-        "Contrats d'entretien préventif, curatif, et hotline technique 6j/7 pour toutes vos installations.",
-        "عقود صيانة وقائية وعلاجية، وخط ساخن تقني 6 أيام في الأسبوع لجميع تركيباتكم."
-      ),
+      image: "/images/pump.png",
     },
   ];
 
   return (
-    <section className="py-24 lg:py-40 bg-dark-bg">
+    <section className="py-24 lg:py-40 bg-brand-dark-bg relative overflow-hidden">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 lg:mb-24 gap-8 md:gap-0">
-          <div>
-            <span className="block font-sans text-brand-gold text-xs uppercase tracking-[0.2em] font-bold mb-4">
-              {t("02 — CE QUE NOUS FAISONS", "02 — ماذا نفعل")}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 lg:mb-32 gap-8 md:gap-0">
+          <div className="max-w-2xl">
+            <span className="block font-sans text-brand-orange text-xs uppercase tracking-[0.3em] font-bold mb-6">
+              {t("// Expertise Technique", "// الخبرة التقنية")}
             </span>
-            <h2 className="font-syne font-extrabold text-5xl md:text-[64px] leading-tight text-white tracking-[-0.02em]">
-              {t("Nos Services.", "خدماتنا.")}
+            <h2 className="font-syne font-extrabold text-5xl md:text-[72px] leading-[0.9] text-white tracking-[-0.03em]">
+              {t("Domaines", "مجالات")} <br className="hidden lg:block" />
+              <span className="text-white/20 outline-text">{t("d'Excellence", "التميز")}</span>
             </h2>
           </div>
           <Link
             href="/services"
-            className="text-white hover:text-brand-gold font-sans text-sm font-bold tracking-wider flex items-center gap-2 transition-colors uppercase border-b border-transparent hover:border-brand-gold pb-1"
+            className="group flex items-center gap-4 text-white font-sans text-xs font-bold tracking-[0.2em] transition-colors uppercase border-b border-white/20 pb-2 hover:border-brand-orange"
           >
-            {t("Voir Tous", "عرض الكل")} <span aria-hidden="true">&rarr;</span>
+            {t("Tous nos services", "جميع خدماتنا")} <span className="text-lg group-hover:translate-x-1 transition-transform">&rarr;</span>
           </Link>
         </div>
 
-        {/* Grid - Horizontal Scroll on Mobile, 2x2 on Desktop */}
-        <div className="flex overflow-x-auto lg:grid lg:grid-cols-2 gap-6 pb-8 lg:pb-0 snap-x snap-mandatory hide-scrollbar">
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
           {services.map((service) => (
             <div
               key={service.id}
-              className="min-w-[85vw] sm:min-w-[400px] lg:min-w-0 snap-start bg-[#0F2035] border border-white/5 border-t-brand-gold border-t-2 p-10 lg:p-12 relative overflow-hidden transition-all duration-300 hover:bg-primary-blue/15 hover:border-primary-blue/50 hover:-translate-y-1.5 group cursor-pointer"
+              className="group relative flex flex-col h-full bg-[#111] border border-white/5 transition-all duration-500 hover:border-brand-orange/30 overflow-hidden"
             >
-              {/* Background Number */}
-              <span className="absolute top-6 right-8 font-syne font-extrabold text-[72px] text-white/[0.04] leading-none pointer-events-none transition-colors duration-300 group-hover:text-primary-blue/20">
-                {service.id}
-              </span>
-
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="text-[36px] mb-8 select-none">
-                  {service.icon}
-                </div>
+              {/* Image Container */}
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0"
+                />
+                <div className="absolute inset-0 bg-brand-dark-bg/40 group-hover:bg-brand-dark-bg/10 transition-colors duration-500" />
                 
-                <h3 className="font-syne font-bold text-[22px] text-white mb-4 leading-snug">
+                {/* Number Overlay */}
+                <div className="absolute top-6 left-6 z-10">
+                  <span className="font-syne font-black text-4xl text-white/10 group-hover:text-brand-orange/40 transition-colors">
+                    {service.id}
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-10 flex-1 flex flex-col">
+                <h3 className="font-syne font-bold text-2xl text-white mb-6 leading-tight group-hover:text-brand-orange transition-colors">
                   {service.title}
                 </h3>
                 
-                <p className="font-sans text-[13px] text-white/55 font-light leading-relaxed mt-auto max-w-[90%]">
+                <p className="font-sans text-[15px] text-white/50 font-light leading-relaxed mb-8">
                   {service.desc}
                 </p>
+
+                <div className="mt-auto">
+                  <div className="w-12 h-[1px] bg-white/20 group-hover:w-full group-hover:bg-brand-orange transition-all duration-500" />
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        .outline-text {
+          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+          color: transparent;
+        }
+      `}</style>
     </section>
   );
 }

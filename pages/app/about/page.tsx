@@ -1,125 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLanguage } from "@/context/LanguageContext";
-
-/**
- * DUAL IMAGE SECTION COMPONENT
- * Implements the 300ms dwell delay (React State) and perfect squashing (flex: 100/0)
- */
-const DWELL_MS = 300;
-
-function DualImageSection({ t }: { t: any }) {
-  const [focused, setFocused] = useState<number | null>(null);
-  const dwellTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const ITEMS = [
-    { 
-      id: 'residential', 
-      label: t("Résidentiel & Commercial", "سكني وتجاري"), 
-      sub: t("Solutions de Toiture", "حلول الأسطح"), 
-      src: '/images/house-with-modern-solar-system-as-a-symbol-of-renewable-energy.jpg?v=2' 
-    },
-    { 
-      id: 'agriculture', 
-      label: t("Agriculture & Industrie", "الزراعة والصناعة"), 
-      sub: t("Pompage & Grandes Surfaces", "الضخ والأسطح الكبيرة"), 
-      src: '/images/agro.jpg?v=2' 
-    },
-  ];
-
-  const clearTimer = () => {
-    if (dwellTimer.current) {
-      clearTimeout(dwellTimer.current);
-      dwellTimer.current = null;
-    }
-  };
-
-  const handleEnter = (i: number) => {
-    clearTimer();
-    dwellTimer.current = setTimeout(() => setFocused(i), DWELL_MS);
-  };
-
-  const handleLeave = () => {
-    clearTimer();
-    setFocused(null);
-  };
-
-  return (
-    <section
-      className="relative flex flex-col md:flex-row w-full overflow-hidden bg-dark-bg border-y border-white/5"
-      style={{ height: '70vh' }}
-      onMouseLeave={handleLeave}
-    >
-      {ITEMS.map((item, i) => {
-        const isActive = focused === i;
-        const isInactive = focused !== null && focused !== i;
-
-        return (
-          <div
-            key={item.id}
-            onMouseEnter={() => handleEnter(i)}
-            style={{
-              flex: isActive ? '1 0 100%' : isInactive ? '0 0 0.001%' : '1 0 50%',
-              transition: 'flex 0.8s cubic-bezier(0.77, 0, 0.175, 1)',
-              position: 'relative',
-              overflow: 'hidden',
-              cursor: 'pointer',
-            }}
-          >
-            {/* Background Image Container */}
-            <div 
-                className="absolute inset-0 w-[120%] h-full -left-[10%] transition-all duration-700"
-                style={{
-                    filter: isActive ? 'blur(0px) brightness(1)' : 'blur(12px) brightness(0.4)',
-                    transform: isActive ? 'scale(1.1)' : 'scale(1.02)'
-                }}
-            >
-                <img
-                    src={item.src}
-                    alt={item.label}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                />
-            </div>
-
-            {/* Dark Overlay */}
-            <div
-              className="absolute inset-0 transition-colors duration-700"
-              style={{
-                background: isActive ? 'rgba(12, 26, 39, 0.1)' : 'rgba(12, 26, 39, 0.45)',
-              }}
-            />
-
-            {/* Content Layer */}
-            <div
-              className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-all duration-700"
-              style={{
-                opacity: isInactive ? 0 : 1,
-                transform: isActive ? 'scale(1.1)' : 'scale(1)',
-                pointerEvents: 'none'
-              }}
-            >
-              <span className="font-sans text-[11px] uppercase tracking-[0.3em] text-brand-gold mb-4 opacity-80 drop-shadow-md">
-                {item.sub}
-              </span>
-              <h2 className="font-syne font-extrabold text-[28px] md:text-[clamp(32px,4vw,56px)] text-white uppercase tracking-tight leading-none drop-shadow-2xl">
-                {item.label}
-              </h2>
-              <div className="w-16 h-1 bg-brand-orange mt-6 transition-all duration-700" 
-                   style={{ width: isActive ? '100px' : '0px' }} 
-              />
-            </div>
-          </div>
-        );
-      })}
-    </section>
-  );
-}
 
 export default function AboutPage() {
   const containerRef = useRef<HTMLElement>(null);
@@ -192,27 +78,34 @@ export default function AboutPage() {
         );
       });
 
-      // Hero Background Parallax & Intro
-      gsap.fromTo(".hero-bg-image", 
-        { scale: 1.2, filter: "brightness(0.3) contrast(1.2)" },
-        { 
-          scale: 1, 
-          filter: "brightness(0.5) contrast(1.5)",
-          duration: 2, 
-          ease: "power2.out" 
+      // Dual Image Editorial sliding
+      gsap.fromTo(".dual-image-left", 
+        { x: "-5%", scale: 1.04 },
+        {
+          x: "0%",
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".dual-image-section",
+            start: "top 80%",
+          }
         }
       );
 
-      gsap.to(".hero-bg-image", {
-        y: "20%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero-section-main",
-          start: "top top",
-          end: "bottom top",
-          scrub: true
+      gsap.fromTo(".dual-image-right", 
+        { x: "5%", scale: 1.04 },
+        {
+          x: "0%",
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".dual-image-section",
+            start: "top 80%",
+          }
         }
-      });
+      );
 
     }, containerRef);
 
@@ -220,50 +113,35 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <article ref={containerRef} className="bg-dark-bg min-h-screen pt-32 lg:pt-0 overflow-hidden font-sans">
+    <article ref={containerRef} className="bg-dark-bg min-h-screen pt-32 lg:pt-0 overflow-hidden">
       
-      {/* SECTION 1 — PAGE HERO (Full Screen Background) */}
-      <section className="hero-section-main relative h-screen flex flex-col justify-center overflow-hidden">
-        {/* Background Image Layer */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/powerline.jpg"
-            alt="Powerline background"
-            fill
-            className="hero-bg-image object-cover object-center"
-            priority
-            sizes="100vw"
-          />
-          {/* Cinematic Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A27] via-[#0C1A27]/60 to-transparent z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A27] via-transparent to-transparent z-10" />
-          <div className="absolute inset-0 bg-black/20 mix-blend-overlay z-10" />
-        </div>
-
+      {/* SECTION 1 — PAGE HERO */}
+      <section className="relative lg:min-h-screen flex flex-col justify-end pt-20 lg:pt-40">
         {/* Grain noise overlay */}
         <div 
-          className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-[0.035] w-[200%] h-[200%] -left-[50%] -top-[50%] z-20"
+          className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-[0.035] w-[200%] h-[200%] -left-[50%] -top-[50%] z-10"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
 
-        <div className="container mx-auto px-6 lg:px-12 relative z-30">
-          <div className="max-w-4xl pt-20 lg:pt-0 lg:-ml-8">
-            <div className="overflow-hidden mb-6 py-1">
-              <span className="hero-line block font-sans text-brand-gold text-[12px] font-bold uppercase tracking-[0.3em] drop-shadow-md">
+        <div className="flex flex-col lg:flex-row relative z-20 flex-1">
+          {/* Text Left (55%) */}
+          <div className="w-full lg:w-[55%] flex flex-col justify-center px-6 lg:pl-12 lg:pr-20 pb-16 lg:pb-32">
+            <div className="overflow-hidden mb-6">
+              <span className="hero-line block font-sans text-brand-gold text-[11px] font-medium uppercase tracking-[0.2em]">
                 {t("02 — À PROPOS", "02 — من نحن")}
               </span>
             </div>
 
-            <h1 className="font-syne font-extrabold text-[44px] md:text-[68px] lg:text-[clamp(52px,6vw,84px)] leading-[1.1] tracking-[-0.04em] text-white mb-10 drop-shadow-2xl">
-              <div className="overflow-hidden py-1 pr-4"><span className="hero-line block">{t("Construire", "بناء")}</span></div>
-              <div className="overflow-hidden py-1 pr-4"><span className="hero-line block">{t("l'Avenir", "المستقبل")}</span></div>
-              <div className="overflow-hidden py-1 pr-4"><span className="hero-line block text-brand-orange drop-shadow-[0_0_15px_rgba(255,123,0,0.3)]">{t("Énergétique.", "الطاقي.")}</span></div>
+            <h1 className="font-syne font-extrabold text-[56px] md:text-[80px] lg:text-[clamp(72px,7vw,110px)] leading-[0.88] tracking-[-0.04em] text-white mb-8">
+              <div className="overflow-hidden"><span className="hero-line block">{t("Construire", "بناء")}</span></div>
+              <div className="overflow-hidden"><span className="hero-line block">{t("l'Avenir", "المستقبل")}</span></div>
+              <div className="overflow-hidden"><span className="hero-line block text-brand-gold">{t("Énergétique.", "الطاقي.")}</span></div>
             </h1>
 
-            <div className="overflow-hidden mb-12">
-              <p className="hero-line font-sans text-base md:text-lg font-light text-white/80 max-w-[500px] leading-[1.8] drop-shadow-lg">
+            <div className="overflow-hidden mb-10">
+              <p className="hero-line font-sans text-base font-light text-white/60 max-w-[440px] leading-[1.85]">
                 {t(
                   "Depuis Agadir, au cœur du Souss-Massa, SEP accompagne particuliers, agriculteurs et industriels dans leur transition vers une énergie propre, fiable et souveraine.",
                   "من أكادير، في قلب سوس ماسة، ترافق SEP الأفراد والمزارعين والصناعيين في انتقالهم نحو طاقة نظيفة وموثوقة ومستقلة."
@@ -272,22 +150,49 @@ export default function AboutPage() {
             </div>
 
             <div className="overflow-hidden">
-              <div className="hero-line flex flex-wrap gap-6">
-                <div className="flex flex-col">
-                  <span className="font-syne font-bold text-white text-xl">2014</span>
-                  <span className="font-sans text-[10px] uppercase tracking-widest text-brand-gold">{t("Depuis", "منذ")}</span>
-                </div>
-                <div className="w-px h-10 bg-white/20" />
-                <div className="flex flex-col">
-                  <span className="font-syne font-bold text-white text-xl">+500</span>
-                  <span className="font-sans text-[10px] uppercase tracking-widest text-brand-gold">{t("Projets", "مشروع")}</span>
-                </div>
-                <div className="w-px h-10 bg-white/20" />
-                <div className="flex flex-col">
-                  <span className="font-syne font-bold text-white text-xl">Agadir</span>
-                  <span className="font-sans text-[10px] uppercase tracking-widest text-brand-gold">{t("Siège", "المقر")}</span>
-                </div>
+              <div className="hero-line flex flex-wrap gap-4">
+                <span className="border border-white/12 px-4 py-2 font-sans font-medium text-[12px] text-white rounded-none">
+                  {t("Fondée en 2014", "تأسست عام 2014")}
+                </span>
+                <span className="border border-white/12 px-4 py-2 font-sans font-medium text-[12px] text-white rounded-none">
+                  {t("+500 Projets", "+500 مشروع")}
+                </span>
               </div>
+            </div>
+          </div>
+
+          {/* Image Right (45%) Bleeds right */}
+          <div className="w-full lg:w-[45%] h-[50vh] lg:h-auto relative lg:absolute top-0 right-0 bottom-0 z-0">
+            {/* Gradient Overlay for fade */}
+            <div 
+              className="absolute inset-0 z-10 pointer-events-none"
+              style={{ background: lang === 'ar' ? 'linear-gradient(to left, #0C1A27 0%, transparent 30%)' : 'linear-gradient(to right, #0C1A27 0%, transparent 30%)' }}
+            />
+            <Image
+              src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=900&q=80"
+              alt="Industrial solar field"
+              fill
+              className="object-cover object-center"
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+            />
+          </div>
+        </div>
+
+        {/* Bottom Hero Stats Strip */}
+        <div className="w-full border-t border-white/10 relative z-20 bg-dark-bg/80 backdrop-blur-sm">
+          <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 py-6">
+            <div className="flex flex-col border-b md:border-b-0 md:border-r border-white/10 py-4 md:py-2 px-2">
+              <span className="font-syne font-bold text-2xl text-white mb-1">2014</span>
+              <span className="font-sans text-[11px] uppercase tracking-widest text-white/50">{t("Année de Fondation", "سنة التأسيس")}</span>
+            </div>
+            <div className="flex flex-col border-b md:border-b-0 md:border-r border-white/10 py-4 md:py-2 md:px-8">
+              <span className="font-syne font-bold text-2xl text-white mb-1">Agadir</span>
+              <span className="font-sans text-[11px] uppercase tracking-widest text-white/50">{t("Siège Social", "المقر الرئيسي")}</span>
+            </div>
+            <div className="flex flex-col py-4 md:py-2 md:pl-8">
+              <span className="font-syne font-bold text-2xl text-white mb-1">+10 ans</span>
+              <span className="font-sans text-[11px] uppercase tracking-widest text-white/50">{t("D'Expérience Terrain", "تجارب ميدانية")}</span>
             </div>
           </div>
         </div>
@@ -330,16 +235,27 @@ export default function AboutPage() {
       <section className="team-values-section pb-32 lg:pb-48 px-6 lg:px-12 container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center overflow-hidden">
           
-          <div className="team-image-container relative w-full aspect-[3/4] border border-white/5 bg-[#0F2035] p-0 rounded-none overflow-hidden">
+          {/* Left Image */}
+          <div className="team-image-container relative w-full aspect-[3/4] border border-white/5 bg-[#0F2035] p-0 rounded-none">
             <Image
-              src="/images/workers.webp"
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
               alt="Construction workers installing solar"
               fill
               className="object-cover object-center rounded-none"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
+            {/* Floating Label */}
+            <div className="absolute -bottom-6 -left-2 lg:-left-6 bg-[#0F2035] border border-white/10 px-5 py-4 rounded-none shadow-2xl z-10">
+              <div className="font-sans font-medium text-[12px] text-white mb-1">
+                📍 {t("Agadir, Maroc", "أكادير، المغرب")}
+              </div>
+              <div className="font-sans font-light text-[11px] text-brand-gold uppercase tracking-wider">
+                {t("Équipe terrain certifiée", "فريق ميداني معتمد")}
+              </div>
+            </div>
           </div>
 
+          {/* Right Values */}
           <div className="values-list flex flex-col pt-12 lg:pt-0">
             <span className="font-sans text-brand-gold text-xs uppercase tracking-[0.2em] font-bold mb-6">
               {t("02 — NOS VALEURS", "02 — قيمنا")}
@@ -395,73 +311,122 @@ export default function AboutPage() {
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-24 lg:gap-y-0 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0">
             
-            <div className="flex flex-col items-center px-10 lg:border-r border-white/10">
+            <div className="flex flex-col items-center text-center lg:border-r border-white/10 px-4">
               <div className="flex items-baseline mb-2">
-                <span className="about-counter font-syne font-extrabold text-[56px] lg:text-[64px] text-brand-orange leading-none" data-target="8">
+                <span className="about-counter font-syne font-extrabold text-[60px] lg:text-[80px] text-brand-gold leading-none" data-target="8">
                   8
                 </span>
               </div>
-              <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold max-w-[120px] mt-4 leading-relaxed whitespace-nowrap">
+              <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-white/50 font-bold whitespace-nowrap mt-2">
                 {t("Wilayas couvertes", "ولايات مغطاة")}
               </span>
             </div>
 
-            <div className="flex flex-col items-center px-10 lg:border-r border-white/10">
+            <div className="flex flex-col items-center text-center lg:border-r border-white/10 px-4">
               <div className="flex items-baseline mb-2">
-                <span className="about-counter font-syne font-extrabold text-[56px] lg:text-[64px] text-brand-orange leading-none" data-target="3000">
+                <span className="about-counter font-syne font-extrabold text-[60px] lg:text-[80px] text-brand-gold leading-none" data-target="3000">
                   3000
                 </span>
-                <span className="font-syne font-extrabold text-[56px] lg:text-[64px] text-brand-orange leading-none ml-1">h</span>
+                <span className="font-syne font-extrabold text-[60px] lg:text-[80px] text-brand-gold leading-none">h</span>
               </div>
-              <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold max-w-[180px] mt-4 leading-relaxed whitespace-nowrap">
-                {t("Ensoleillement", "إشعاع الشمس")}
+              <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-white/50 font-bold whitespace-nowrap mt-2">
+                {t("Ensoleillement Souss-Massa", "إشعاع سوس ماسة")}
               </span>
             </div>
 
-            <div className="flex flex-col items-center px-10 lg:border-r border-white/10">
+            <div className="flex flex-col items-center text-center lg:border-r border-white/10 px-4">
               <div className="flex items-baseline mb-2">
-                <span className="about-counter font-syne font-extrabold text-[56px] lg:text-[64px] text-brand-orange leading-none" data-target="15">
+                <span className="about-counter font-syne font-extrabold text-[60px] lg:text-[80px] text-brand-gold leading-none" data-target="15">
                   15
                 </span>
-                <span className="font-syne font-extrabold text-[56px] lg:text-[64px] text-brand-orange leading-none ml-2">+</span>
+                <span className="font-syne font-extrabold text-[60px] lg:text-[80px] text-brand-gold leading-none ml-2">+</span>
               </div>
-              <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold max-w-[150px] mt-4 leading-relaxed whitespace-nowrap">
-                {t("Partenaires", "شركاء")}
+              <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-white/50 font-bold whitespace-nowrap mt-2">
+                {t("Partenaires certifiés", "شركاء معتمدون")}
               </span>
             </div>
 
-            <div className="flex flex-col items-center px-10">
+            <div className="flex flex-col items-center text-center px-4">
               <div className="flex items-baseline mb-2">
-                <span className="about-counter font-syne font-extrabold text-[56px] lg:text-[64px] text-brand-orange leading-none" data-target="2">
+                <span className="about-counter font-syne font-extrabold text-[60px] lg:text-[80px] text-brand-gold leading-none" data-target="2">
                   2
                 </span>
-                <span className="font-syne font-extrabold text-[56px] lg:text-[64px] text-brand-orange leading-none ml-1">x</span>
+                <span className="font-syne font-extrabold text-[60px] lg:text-[80px] text-brand-gold leading-none">x</span>
               </div>
-              <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold max-w-[150px] mt-4 leading-relaxed whitespace-nowrap">
-                {t("ROI Moyen", "عائد الاستثمار")}
+              <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-white/50 font-bold whitespace-nowrap mt-2">
+                {t("Retour sur investissement", "عائد الاستثمار")}
               </span>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* SECTION 5 — DUAL IMAGE SECTION (React Powered Entry) */}
-      <DualImageSection t={t} />
+      {/* SECTION 5 — DUAL IMAGE EDITORIAL BLOCK */}
+      <section className="dual-image-section flex flex-col md:flex-row w-full h-[70vh] overflow-hidden bg-dark-bg">
+        {/* Left Image */}
+        <div className="relative w-full md:w-[50vw] h-1/2 md:h-full overflow-hidden">
+          <div className="dual-image-left absolute inset-0 w-[110%] h-[110%] -top-[5%] -left-[5%]">
+            <Image
+              src="https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80"
+              alt="Résidentiel & Commercial"
+              fill
+              className="object-cover object-center"
+              sizes="50vw"
+            />
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-[#0C1A27]/35" />
+          </div>
+          {/* Centered Text */}
+          <div className="absolute inset-0 flex items-center justify-center z-10 drop-shadow-lg">
+            <span className="font-syne font-bold text-[22px] text-white">{t("Résidentiel & Commercial", "سكني وتجاري")}</span>
+          </div>
+        </div>
+
+        {/* Center line (Desktop) */}
+        <div className="hidden md:block w-px h-full bg-brand-gold z-20" />
+        
+        {/* Center line (Mobile) */}
+        <div className="block md:hidden w-full h-px bg-brand-gold z-20" />
+
+        {/* Right Image */}
+        <div className="relative w-full md:w-[50vw] h-1/2 md:h-full overflow-hidden">
+          <div className="dual-image-right absolute inset-0 w-[110%] h-[110%] -top-[5%] -left-[5%]">
+            <Image
+              src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80"
+              alt="Agriculture & Industrie"
+              fill
+              className="object-cover object-center"
+              sizes="50vw"
+            />
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-[#0C1A27]/35" />
+          </div>
+          {/* Centered Text */}
+          <div className="absolute inset-0 flex items-center justify-center z-10 drop-shadow-lg">
+            <span className="font-syne font-bold text-[22px] text-white">{t("Agriculture & Industrie", "الزراعة والصناعة")}</span>
+          </div>
+        </div>
+      </section>
 
       {/* SECTION 6 — CTA (Specific to About) */}
       <section className="cta-section relative w-full py-32 lg:py-48 flex items-center justify-center overflow-hidden">
+        {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/powerline2.jpg"
+            src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1400&q=80"
             alt="Aerial view"
             fill
             className="object-cover object-center"
             sizes="100vw"
           />
+          {/* 85% Dark Overlay */}
           <div className="absolute inset-0 bg-[#0C1A27]/85 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/50 to-transparent" />
+          {/* Heat overlay spot */}
+          <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-orange/40 rounded-full blur-[180px] pointer-events-none mix-blend-screen" />
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center text-center">

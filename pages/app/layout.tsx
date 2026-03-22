@@ -30,16 +30,8 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "SEP",
+  title: "Sud Extra Power - L'Énergie qui change tout",
   description: "Solutions solaires et hydrauliques à Agadir, Maroc.",
-  icons: {
-    icon: [
-      { url: "/LOGO1.png" },
-      { url: "/LOGO1.png", sizes: "32x32" },
-    ],
-    apple: "/LOGO1.png",
-    shortcut: "/LOGO1.png",
-  },
 };
 
 export default function RootLayout({

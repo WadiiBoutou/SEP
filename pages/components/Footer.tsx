@@ -20,7 +20,6 @@ export default function Footer() {
                   alt="Sud Extra Power Logo"
                   fill
                   className="object-contain"
-                  sizes="36px"
                 />
               </div>
               <span className="font-syne font-bold text-lg tracking-tight text-white">
@@ -61,19 +60,19 @@ export default function Footer() {
               {t("Contact", "اتصل بنا")}
             </h4>
             <ul className="flex flex-col gap-4 font-sans text-sm text-white/60">
-              <li>Swalem, Route de Tiznit, Inchaden</li>
+              <li>Route de Tiznit, Inchaden</li>
               <li>Chtouka Ait Baha, Agadir</li>
               <li>+212 612-619329</li>
-              <li>sudextrapower@gmail.com</li>
+              <li>contact@sudextrapower.ma</li>
             </ul>
             <div className="flex items-center gap-4 mt-8">
               <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-dark-bg transition-all">
                 <Facebook size={18} />
               </a>
-              <a href="https://wa.me/212612619329?text=Bonjour%20l'equipe%20SEP%2C%20je%20souhaiterais%20obtenir%20des%20informations%20sur%20vos%20solutions%20d'energie%20solaire." target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#25D366] transition-all">
+              <a href="https://wa.me/212612619329" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#25D366] transition-all">
                 <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
               </a>
-              <a href="mailto:sudextrapower@gmail.com" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-dark-bg transition-all">
+              <a href="mailto:contact@sudextrapower.ma" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-dark-bg transition-all">
                 <Mail size={18} />
               </a>
             </div>

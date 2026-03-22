@@ -36,14 +36,13 @@ export default function Navbar() {
         }`}
       >
         <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-4 z-50">
-            <div className="relative h-[60px] w-[60px]">
+          <Link href="/" className="flex items-center gap-3 z-50">
+            <div className="relative h-[44px] w-[44px]">
               <Image
                 src="/LOGO1.png"
                 alt="Sud Extra Power Logo"
                 fill
                 className="object-contain"
-                sizes="60px"
                 priority
               />
             </div>

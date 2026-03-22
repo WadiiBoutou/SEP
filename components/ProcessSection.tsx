@@ -1,75 +1,147 @@
 "use client";
 
+import { useEffect, useRef, useLayoutEffect } from "react";
+import Image from "next/image";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLanguage } from "@/context/LanguageContext";
+import styles from "./ProcessSection.module.css";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const processSteps = [
+  {
+    num: "01",
+    title: "Consultation",
+    desc: "Analyse approfondie de votre consommation et de votre potentiel solaire.",
+    img: "/images/modern_solar_home.png",
+  },
+  {
+    num: "02",
+    title: "Conception",
+    desc: "Étude technique personnalisée et plan d'implantation détaillé.",
+    img: "/images/solar_field.png",
+  },
+  {
+    num: "03",
+    title: "Mise en œuvre",
+    desc: "Installation rigoureuse par nos techniciens experts certifiés.",
+    img: "/images/house.png",
+  },
+  {
+    num: "04",
+    title: "Monitoring",
+    desc: "Monitoring en temps réel et suivi de performance permanent.",
+    img: "/images/maintenance2.webp",
+  },
+];
 
 export default function ProcessSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
-  const steps = [
-    {
-      num: "01",
-      title: t("Audit Gratuit", "تدقيق مجاني"),
-      desc: t(
-        "Nous analysons vos besoins énergétiques et votre site.",
-        "نحلل احتياجاتك الطاقية وموقعك."
-      )
-    },
-    {
-      num: "02",
-      title: t("Étude Technique", "دراسة تقنية"),
-      desc: t(
-        "Notre équipe conçoit une solution sur mesure.",
-        "يقوم فريقنا بتصميم حل مخصص."
-      )
-    },
-    {
-      num: "03",
-      title: t("Installation", "التركيب"),
-      desc: t(
-        "Nos techniciens certifiés déploient votre système en quelques jours.",
-        "يقوم تقنيونا المعتمدون بتركيب نظامك في بضعة أيام."
-      )
-    },
-    {
-      num: "04",
-      title: t("Suivi & SAV", "المتابعة والخدمة"),
-      desc: t(
-        "Monitoring continu, maintenance et support à vie.",
-        "مراقبة مستمرة وصيانة ودعم مدى الحياة."
-      )
-    }
-  ];
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      // Timeline Progress Animation
+      if (progressRef.current) {
+        gsap.to(progressRef.current, {
+          height: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 60%",
+            end: "bottom 80%",
+            scrub: 1,
+          },
+        });
+      }
+
+      // Items Animation
+      const items = gsap.utils.toArray<HTMLElement>(`.${styles.item}`);
+      items.forEach((item) => {
+        gsap.fromTo(
+          item,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [lang]);
 
   return (
-    <section className="py-24 lg:py-40 bg-dark-bg">
-      <div className="container mx-auto px-6 lg:px-12">
-        <h2 className="font-syne font-extrabold text-5xl md:text-[56px] text-white mb-20 tracking-tight text-center lg:text-left">
-          {t("Comment Ça Marche.", "كيف نعمل.")}
+    <section ref={sectionRef} className={styles.section}>
+      <div className={styles.header}>
+        <span className={styles.label}>{t("// Méthodologie", "// المنهجية")}</span>
+        <h2 className={styles.title}>
+          Process <span className={styles.outlineText}>de Travail</span>
         </h2>
+      </div>
 
-        <div className="relative">
-          {/* Dashed line connecting steps (Desktop only) */}
-          <div className="hidden lg:block absolute top-[40px] left-0 right-[25%] border-t border-dashed border-white/15 z-0" />
+      <div className={styles.timelineContainer}>
+        {/* Vertical Timeline */}
+        <div className={styles.timeline}>
+          <div ref={progressRef} className={styles.progress} />
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 relative z-10">
-            {steps.map((step, index) => (
-              <div key={index} className="flex flex-col relative group">
-                <div className="bg-dark-bg inline-block self-start pr-6 mb-8 relative z-10">
-                  <span className="font-syne font-extrabold text-[56px] lg:text-[80px] text-brand-gold leading-none block transform group-hover:-translate-y-2 transition-transform duration-300">
-                    {step.num}
-                  </span>
+        <div ref={containerRef} className={styles.itemsStack}>
+          {processSteps.map((step, index) => (
+            <div
+              key={step.num}
+              className={`${styles.item} ${index % 2 !== 0 ? styles.rowReverse : ""}`}
+            >
+              {/* Timeline Dot */}
+              <div className={styles.dot} />
+
+              {/* Image Column */}
+              <div className={styles.imageCol}>
+                <div className={styles.imageBox}>
+                  <Image
+                    src={step.img}
+                    alt={step.title}
+                    fill
+                    className={styles.image}
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                  />
                 </div>
-                
-                <h3 className="font-syne font-bold text-2xl text-white mb-4">
-                  {step.title}
+              </div>
+
+              {/* Text Column */}
+              <div className={styles.textCol}>
+                <div className={styles.stepNum}>{step.num}</div>
+                <h3 className={styles.stepTitle}>
+                  {t(step.title, 
+                    step.title === "Consultation" ? "استشارة" :
+                    step.title === "Conception" ? "تصميم" :
+                    step.title === "Mise en œuvre" ? "تنفيذ" : "مراقبة"
+                  )}
                 </h3>
-                
-                <p className="font-sans text-[15px] font-light text-white/50 leading-relaxed pr-4">
-                  {step.desc}
+                <p className={styles.stepDesc}>
+                  {t(step.desc,
+                    step.title === "Consultation" ? "تحليل عميق لاستهلاكك وإمكانات الطاقة الشمسية الخاصة بك." :
+                    step.title === "Conception" ? "دراسة فنية شخصية وخطة تنفيذ مفصلة." :
+                    step.title === "Mise en œuvre" ? "تركيب دقيق من قبل الفنيين الخبراء المعتمدين لدينا." : "مراقبة في الوقت الحقيقي وتتبع الأداء الدائم."
+                  )}
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

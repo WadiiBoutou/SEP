@@ -8,8 +8,8 @@ export default function WhatsAppButton() {
   const { lang, t } = useLanguage();
   const btnRef = useRef<HTMLAnchorElement>(null);
 
-  const phone = "212612619329";
-  const defaultMsg = "Bonjour l'équipe SEP, je souhaiterais obtenir des informations sur vos solutions d'énergie solaire.";
+  const phone = "212602606041";
+  const defaultMsg = "Bonjour STÉ WADNOUN AD SARL, je souhaite avoir plus d'informations.";
   const encodedMsg = encodeURIComponent(defaultMsg);
 
   useEffect(() => {

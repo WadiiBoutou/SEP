@@ -38,63 +38,6 @@ export default function ServicesPage() {
         delay: 0.8,
       });
 
-      // Typing effect for "Promesses" / "وعود"
-      const promessesText = document.querySelector('.typing-target');
-      if (promessesText) {
-        const text = promessesText.textContent || "";
-        promessesText.textContent = "";
-        const chars = text.split("");
-        chars.forEach((char) => {
-          const span = document.createElement("span");
-          span.textContent = char;
-          span.style.opacity = "0";
-          promessesText.appendChild(span);
-        });
-
-        gsap.to(promessesText.children, {
-          opacity: 1,
-          duration: 0.05,
-          stagger: 0.1, // ~2 seconds for ~20 chars or adjusted for "Promesses" (9 chars)
-          ease: "none",
-          delay: 1.2
-        });
-      }
-
-      // HLS Video Loader for cross-browser support
-      const video = document.getElementById('hero-video') as HTMLVideoElement;
-      const videoSrc = "https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8";
-      
-      if (video) {
-        video.loop = true;
-        // Also force loop with event just in case
-        video.addEventListener('ended', () => {
-          video.play();
-        });
-
-        if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = videoSrc;
-          video.addEventListener('loadedmetadata', () => {
-            video.play().catch(e => console.error("Native play failed", e));
-          });
-        } else {
-          // Dynamic import of Hls.js to avoid bundle weight if not needed
-          const script = document.createElement('script');
-          script.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest';
-          script.onload = () => {
-            const Hls = (window as any).Hls;
-            if (Hls.isSupported()) {
-              const hls = new Hls();
-              hls.loadSource(videoSrc);
-              hls.attachMedia(video);
-              hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                video.play().catch(e => console.error("HLS play failed", e));
-              });
-            }
-          };
-          document.head.appendChild(script);
-        }
-      }
-
       // SECTIONS 2, 3, 4, 5 — SERVICE SECTIONS
       const serviceSections = gsap.utils.toArray('.service-section');
       
@@ -170,30 +113,9 @@ export default function ServicesPage() {
       
       {/* SECTION 1 — PAGE HERO */}
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20 pb-20 overflow-hidden">
-        {/* Video Background/Overlay Layer */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            id="hero-video"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover brightness-[0.9] contrast-[1.25]"
-          >
-            <source src="https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8" type="application/x-mpegURL" />
-          </video>
-          {/* Intense Orange Overlay for Tinting */}
-          <div className="absolute inset-0 bg-brand-orange/60 mix-blend-overlay z-1" />
-          <div className="absolute inset-0 bg-brand-orange/20 mix-blend-color z-1" />
-          
-          {/* Reduced Dark Overlays for Brightness & Detail */}
-          <div className="absolute inset-0 bg-[#0C1A27]/60 mix-blend-multiply z-1" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A27]/30 via-transparent to-[#0C1A27] z-2" />
-        </div>
-
         {/* Grain texture overlay */}
         <div 
-          className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-[0.035] w-[200%] h-[200%] -left-[50%] -top-[50%] z-3"
+          className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-[0.035] w-[200%] h-[200%] -left-[50%] -top-[50%] z-0"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
@@ -210,7 +132,7 @@ export default function ServicesPage() {
             <div className="overflow-hidden"><span className="hero-text-line block">{t("Des Solutions.", "حلول.")}</span></div>
             <div className="overflow-hidden"><span className="hero-text-line block">{t("Pas des", "وليست")}</span></div>
             <div className="overflow-hidden">
-              <span className="hero-text-line block text-brand-gold border-b-2 border-brand-gold inline-block pb-1 typing-target">
+              <span className="hero-text-line block text-brand-gold border-b-2 border-brand-gold inline-block pb-1">
                 {t("Promesses.", "وعود.")}
               </span>
             </div>
@@ -306,7 +228,7 @@ export default function ServicesPage() {
             <div className="absolute inset-y-0 left-0 w-[25%] lg:bg-gradient-to-r from-dark-bg to-transparent z-10 pointer-events-none" />
 
             <Image
-              src="/images/-1x-1.webp"
+              src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=900&q=80"
               alt="Installation photovoltaïque"
               fill
               className="object-cover object-center rounded-none"
@@ -334,7 +256,7 @@ export default function ServicesPage() {
             <div className="absolute inset-y-0 right-0 w-[25%] lg:bg-gradient-to-l from-dark-bg to-transparent z-10 pointer-events-none" />
 
             <Image
-              src="/images/irrigation.jpg"
+              src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=900&q=80"
               alt="Pompage solaire et irrigation agricole"
               fill
               className="object-cover object-center rounded-none"
@@ -436,7 +358,7 @@ export default function ServicesPage() {
             <div className="absolute inset-y-0 left-0 w-[25%] lg:bg-gradient-to-r from-dark-bg to-transparent z-10 pointer-events-none" />
 
             <Image
-              src="/images/chauffe eau solaire.webp"
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80"
               alt="Chauffe-eau solaire"
               fill
               className="object-cover object-center rounded-none"
@@ -455,7 +377,7 @@ export default function ServicesPage() {
             <div className="absolute inset-y-0 right-0 w-[25%] lg:bg-gradient-to-l from-dark-bg to-transparent z-10 pointer-events-none" />
 
             <Image
-              src="/images/maintenance2.webp"
+              src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=80"
               alt="Maintenance and technical support"
               fill
               className="object-cover object-center rounded-none"
@@ -505,31 +427,19 @@ export default function ServicesPage() {
       </section>
 
       {/* SECTION 6 — COMPARISON TABLE */}
-      <section className="comparison-section pt-16 pb-32 lg:pt-24 lg:pb-48 px-6 bg-[#0F2035] border-y border-white/5">
+      <section className="comparison-section py-32 lg:py-48 px-6 bg-[#0F2035] border-y border-white/5">
         <div className="container mx-auto">
           {/* Header */}
-          <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="max-w-[600px]">
-              <span className="block font-sans text-brand-gold text-[12px] uppercase tracking-[0.2em] font-medium mb-4">
-                {t("COMPARATIF", "مقارنة")}
-              </span>
-              <h2 className="font-syne font-extrabold text-[44px] md:text-[56px] leading-tight text-white mb-4">
-                {t("Quel Service Pour Vous ?", "ما هي الخدمة الأنسب لك؟")}
-              </h2>
-              <p className="font-sans text-[15px] font-light text-white/55 leading-relaxed">
-                {t("Un récapitulatif rapide pour identifier la solution adaptée à votre profil.", "ملخص سريع لتحديد الحل المناسب لك.")}
-              </p>
-            </div>
-            
-            <div className="relative w-[180px] h-[180px] md:w-[220px] md:h-[220px] shrink-0 transform -rotate-6 drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-              <Image 
-                src="/3D SEP logo.png"
-                alt="3D SEP Logo"
-                fill
-                className="object-contain contrast-125 brightness-110"
-                sizes="(max-width: 768px) 180px, 220px"
-              />
-            </div>
+          <div className="mb-16">
+            <span className="block font-sans text-brand-gold text-[12px] uppercase tracking-[0.2em] font-medium mb-4">
+              {t("COMPARATIF", "مقارنة")}
+            </span>
+            <h2 className="font-syne font-extrabold text-[40px] md:text-[52px] leading-tight text-white mb-4">
+              {t("Quel Service Pour Vous ?", "ما هي الخدمة الأنسب لك؟")}
+            </h2>
+            <p className="font-sans text-[15px] font-light text-white/55 max-w-[500px] leading-relaxed">
+              {t("Un récapitulatif rapide pour identifier la solution adaptée à votre profil.", "ملخص سريع لتحديد الحل المناسب لك.")}
+            </p>
           </div>
 
           {/* Table Container - Horizontally scrollable on mobile */}
@@ -641,7 +551,7 @@ export default function ServicesPage() {
       <section className="cta-section relative w-full py-32 lg:py-48 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/powerline.jpg"
+            src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1400&q=80"
             alt="Aerial view"
             fill
             className="object-cover object-center"
@@ -650,6 +560,8 @@ export default function ServicesPage() {
           />
           <div className="absolute inset-0 bg-[#0C1A27]/85 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/50 to-transparent" />
+          
+          <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-orange/30 rounded-full blur-[150px] pointer-events-none mix-blend-screen" />
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center text-center">

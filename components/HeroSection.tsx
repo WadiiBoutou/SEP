@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -31,14 +31,6 @@ export default function HeroSection() {
         delay: 0.5,
       });
 
-      gsap.from(".hero-image", {
-        scale: 0.95,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power3.out",
-        delay: 0.3,
-      });
-
       // SVG Grain
       const grain = document.querySelector('.hero-grain') as HTMLElement;
       if (grain) {
@@ -59,122 +51,79 @@ export default function HeroSection() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-screen pt-32 pb-20 flex flex-col justify-center overflow-hidden bg-brand-dark-bg"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-brand-dark-bg"
     >
-      {/* Background radial gradients for heat spotlighting */}
-      <div className="absolute top-[-10%] right-[-10%] w-[900px] h-[900px] bg-brand-orange/30 rounded-full blur-[150px] pointer-events-none mix-blend-screen" />
-      <div className="absolute top-[20%] right-[20%] w-[600px] h-[600px] bg-brand-heat/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
-      
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover opacity-60"
+        >
+          <source src="/sunny_sky.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark-bg/80 via-transparent to-brand-dark-bg" />
+        <div className="absolute inset-0 bg-brand-dark-bg/20" />
+      </div>
+
       {/* Grain noise overlay */}
       <div 
-        className="hero-grain absolute inset-0 pointer-events-none mix-blend-overlay opacity-[0.035] w-[200%] h-[200%] -left-[50%] -top-[50%]"
+        className="hero-grain absolute inset-0 pointer-events-none mix-blend-overlay opacity-[0.035] w-[200%] h-[200%] -left-[50%] -top-[50%] z-[1]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       />
 
-      <div className="container mx-auto px-6 lg:px-12 flex-1 flex flex-col justify-center relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-8">
-          
-          {/* Left Column */}
-          <div className="w-full lg:w-[60%] flex flex-col">
-            <div className="overflow-hidden mb-8">
-              <span className="hero-line block font-sans text-brand-orange text-xs uppercase tracking-[0.2em] font-bold drop-shadow-[0_0_8px_rgba(255,123,0,0.5)]">
-                {t("Énergie Solaire · Maroc", "طاقة شمسية · المغرب")}
-              </span>
-            </div>
-
-            <h1 className="font-syne font-extrabold text-[70px] leading-[0.9] tracking-[-0.04em] md:text-[90px] lg:text-[110px] text-white overflow-hidden mb-8">
-              <span className="hero-line block">{t("L'Énergie", "الطاقة")} <span className="text-brand-glow drop-shadow-[0_0_15px_rgba(255,170,0,0.4)]">{t("SOLAIRE", "الشمسية")}</span></span>
-              <span className="hero-line block">{t("Qui Change", "التي تغير")}</span>
-              <span className="hero-line block text-brand-heat drop-shadow-[0_0_20px_rgba(255,77,0,0.6)]">{t("Tout.", "كل شيء.")}</span>
-            </h1>
-
-            <div className="overflow-hidden mb-12">
-              <p className="hero-line font-sans text-base font-light text-white/55 max-w-[420px] leading-relaxed">
-                {t(
-                  "Depuis Agadir, nous équipons le Maroc en solutions solaires sur mesure — du panneau résidentiel au système de pompage industriel.",
-                  "من أكادير، نجهز المغرب بحلول شمسية مصممة خصيصا - من الألواح المنزلية إلى أنظمة الضخ الصناعية."
-                )}
-              </p>
-            </div>
-
-            <div className="overflow-hidden">
-              <div className="hero-line flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                <Link
-                  href="/contact"
-                  className="bg-brand-orange hover:bg-brand-heat hover:shadow-[0_0_20px_rgba(255,77,0,0.5)] text-dark-bg transition-all px-8 py-4 text-xs uppercase tracking-widest font-bold font-sans rounded-none"
-                >
-                  {t("Obtenir un Devis", "احصل على عرض")}
-                </Link>
-                <Link
-                  href="/services"
-                  className="text-white hover:text-brand-glow hover:border-brand-glow hover:drop-shadow-[0_0_8px_rgba(255,170,0,0.3)] transition-all font-sans text-sm border-b border-white/30 pb-1"
-                >
-                  {t("Découvrir Nos Services", "اكتشف خدماتنا")}
-                </Link>
-              </div>
-            </div>
+      <div className="container mx-auto px-6 lg:px-12 flex-1 flex flex-col justify-center relative z-10 pt-16">
+        <div className="max-w-4xl">
+          <div className="overflow-hidden mb-5">
+            <span className="hero-line block font-sans text-brand-orange text-[10px] uppercase tracking-[0.3em] font-bold drop-shadow-[0_0_8px_rgba(255,123,0,0.5)]">
+              {t("// Énergie Solaire · Maroc", "// طاقة شمسية · المغرب")}
+            </span>
           </div>
 
-          {/* Right Column */}
-          <div className="w-full lg:w-[40%] flex justify-center lg:justify-end">
-            <div className="hero-image relative w-full max-w-[440px] aspect-[4/5] transform rotate-2">
-              {/* Offset Orange Border to simulate heat/sunlight edge */}
-              <div className="absolute inset-0 border-2 border-brand-orange translate-x-3 translate-y-3 pointer-events-none z-0 shadow-[0_0_20px_rgba(255,123,0,0.3)]" />
-              
-              <div className="relative w-full h-full overflow-hidden z-10 border border-white/10 bg-off-dark">
-                <Image
-                  src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=900&q=80"
-                  alt="Solar Field"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                />
-              </div>
+          <h1 className="font-syne font-extrabold text-[54px] leading-[0.88] tracking-[-0.04em] md:text-[84px] lg:text-[105px] text-white overflow-hidden mb-10">
+            <span className="hero-line block">{t("L'Énergie", "الطاقة")} <span className="text-brand-glow drop-shadow-[0_0_20px_rgba(255,170,0,0.4)]">{t("SOLAIRE", "الشمسية")}</span></span>
+            <span className="hero-line block">{t("Qui Change", "التي تغير")} <span className="text-brand-heat drop-shadow-[0_0_25px_rgba(255,77,0,0.6)]">{t("Tout.", "كل شيء.")}</span></span>
+          </h1>
+
+          <div className="overflow-hidden mb-10">
+            <p className="hero-line font-sans text-md font-light text-white/70 max-w-[480px] leading-relaxed">
+              {t(
+                "Depuis Agadir, nous propulsons l'avenir énergétique du Maroc with des installations photovoltaïques de pointe et une expertise technique inégalée.",
+                "من أكادير، ندفع بمستقبل الطاقة في المغرب من خلال تركيبات كهروضوئية متطورة وخبرة تقنية لا مثيل لها."
+              )}
+            </p>
+          </div>
+
+          <div className="overflow-hidden">
+            <div className="hero-line flex flex-col sm:flex-row items-start sm:items-center gap-8">
+              <Link
+                href="/contact"
+                className="group relative overflow-hidden bg-brand-orange px-10 py-5 text-dark-bg transition-all rounded-none"
+              >
+                <span className="relative z-10 text-xs uppercase tracking-[0.2em] font-bold font-sans">
+                  {t("Démarrer votre projet", "ابدأ مشروعك")}
+                </span>
+                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </Link>
+              <Link
+                href="/services"
+                className="group flex items-center gap-3 text-white transition-all font-sans text-sm uppercase tracking-widest font-bold"
+              >
+                <span className="border-b border-white/30 pb-1 group-hover:border-brand-glow group-hover:text-brand-glow transition-all">
+                  {t("Expertise Technique", "الخبرة التقنية")}
+                </span>
+                <span className="text-xl group-hover:translate-x-2 transition-transform">&rarr;</span>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Row Stats */}
-      <div className="container mx-auto px-6 lg:px-12 mt-20 relative z-10">
-        <div className="border-t border-white/10 pt-8" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
-          
-          <div className="flex flex-col border-white/10 md:pr-12">
-            <div className="flex items-baseline">
-              <span className="font-syne font-extrabold text-[52px] text-white leading-none">+</span>
-              <span className="stat-counter font-syne font-extrabold text-[52px] text-white leading-none">500</span>
-            </div>
-            <span className="font-sans text-[11px] uppercase tracking-widest text-white/50 mt-2 font-bold">
-              {t("Installations Réalisées", "تركيبات منجزة")}
-            </span>
-          </div>
-
-          <div className="flex flex-col md:border-l border-white/10 md:px-12">
-            <div className="flex items-baseline">
-              <span className="stat-counter font-syne font-extrabold text-[52px] text-white leading-none">3000</span>
-              <span className="font-syne font-extrabold text-[52px] text-white leading-none">h</span>
-            </div>
-            <span className="font-sans text-[11px] uppercase tracking-widest text-white/50 mt-2 font-bold">
-              {t("Ensoleillement Annuel au Maroc", "إشعاع شمسي سنوي بالمغرب")}
-            </span>
-          </div>
-
-          <div className="flex flex-col md:border-l border-white/10 md:pl-12">
-            <div className="flex items-baseline">
-              <span className="stat-counter font-syne font-extrabold text-[52px] text-white leading-none">10</span>
-              <span className="font-syne font-extrabold text-[52px] text-white leading-none ml-2">MW</span>
-            </div>
-            <span className="font-sans text-[11px] uppercase tracking-widest text-white/50 mt-2 font-bold">
-              {t("Puissance Totale Installée", "القوة الإجمالية المركبة")}
-            </span>
-          </div>
-
-        </div>
-      </div>
     </section>
   );
 }
