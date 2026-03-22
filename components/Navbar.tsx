@@ -29,9 +29,9 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[#0C1A27]/80 backdrop-blur-lg py-4 border-transparent"
+            ? "bg-[#0C1A27]/90 backdrop-blur-lg py-4 border-transparent shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
             : "bg-transparent py-6 border-transparent"
         }`}
       >
@@ -39,7 +39,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-4 z-50">
             <div className="relative h-[60px] w-[60px]">
               <Image
-                src="/LOGO1.webp"
+                src="/LOGO2.webp"
                 alt="Sud Extra Power Logo"
                 fill
                 className="object-contain"
@@ -58,9 +58,10 @@ export default function Navbar() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm font-sans tracking-wide text-white/80 hover:text-white transition-colors"
+                    className="relative text-sm font-sans tracking-wide text-white/80 hover:text-white transition-colors duration-300 group"
                   >
                     {link.name}
+                    <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-brand-orange group-hover:w-full transition-all duration-300 ease-out" />
                   </Link>
                 </li>
               ))}

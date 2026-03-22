@@ -91,7 +91,7 @@ export default function HeroSection() {
           </h1>
 
           <div className="overflow-hidden mb-10">
-            <p className="hero-line font-sans text-md font-light text-white/70 max-w-[480px] leading-relaxed">
+            <p className="hero-line font-sans text-md font-light text-white/80 max-w-[480px] leading-relaxed">
               {t(
                 "Depuis Agadir, nous propulsons l'avenir énergétique du Maroc with des installations photovoltaïques de pointe et une expertise technique inégalée.",
                 "من أكادير، ندفع بمستقبل الطاقة في المغرب من خلال تركيبات كهروضوئية متطورة وخبرة تقنية لا مثيل لها."
@@ -103,7 +103,7 @@ export default function HeroSection() {
             <div className="hero-line flex flex-col sm:flex-row items-start sm:items-center gap-8">
               <Link
                 href="/contact"
-                className="group relative overflow-hidden bg-brand-orange px-10 py-5 text-dark-bg transition-all rounded-none"
+                className="cta-glow group relative overflow-hidden bg-brand-orange px-10 py-5 text-dark-bg transition-all rounded-none"
               >
                 <span className="relative z-10 text-xs uppercase tracking-[0.2em] font-bold font-sans">
                   {t("Démarrer votre projet", "ابدأ مشروعك")}

@@ -73,10 +73,9 @@ function DualImageSection({ t }: { t: any }) {
           >
             {/* Background Image Container */}
             <div 
-                className="absolute inset-0 w-[120%] h-full -left-[10%] transition-all duration-700"
+                className="absolute inset-0 w-full h-full transition-all duration-700"
                 style={{
                     filter: isActive ? 'blur(0px) brightness(1)' : 'blur(12px) brightness(0.4)',
-                    transform: isActive ? 'scale(1.1)' : 'scale(1.02)'
                 }}
             >
                 <img
@@ -100,7 +99,6 @@ function DualImageSection({ t }: { t: any }) {
               className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-all duration-700"
               style={{
                 opacity: isInactive ? 0 : 1,
-                transform: isActive ? 'scale(1.1)' : 'scale(1)',
                 pointerEvents: 'none'
               }}
             >

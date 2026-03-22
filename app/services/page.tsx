@@ -172,6 +172,13 @@ export default function ServicesPage() {
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20 pb-20 overflow-hidden">
         {/* Video Background/Overlay Layer */}
         <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* Fallback image — visible instantly, same filter as video */}
+          <img
+            src="/images/fallback.webp"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover brightness-[0.9] contrast-[1.25]"
+          />
           <video
             id="hero-video"
             autoPlay

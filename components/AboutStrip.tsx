@@ -56,7 +56,7 @@ export default function AboutStrip() {
             {t("Nés du soleil du Sud.", "ولدنا من شمس الجنوب.")}
           </h2>
           
-          <p className="about-content font-sans text-[15px] leading-[1.7] text-white/50 font-light mb-10 max-w-[460px]">
+          <p className="about-content font-sans text-[15px] leading-[1.7] text-white/70 font-light mb-10 max-w-[460px]">
             {t(
               "Sud Extra Power est une société marocaine fondée à Agadir, au cœur de la région la plus ensoleillée du Royaume. Nous concevons et déployons des systèmes d'énergie renouvelable pour les particuliers, les agriculteurs et les entreprises — avec une obsession pour la durabilité et la performance terrain.",
               "سود إكسترا باور هي شركة مغربية تأسست في أكادير، في قلب أكثر مناطق المملكة إشعاعا. نصمم وننشر أنظمة الطاقة المتجددة للأفراد والمزارعين والشركات — بشغف نحو الاستدامة والأداء الميداني."

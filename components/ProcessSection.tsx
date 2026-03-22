@@ -90,7 +90,7 @@ export default function ProcessSection() {
       <div className={styles.header}>
         <span className={styles.label}>{t("// Méthodologie", "// المنهجية")}</span>
         <h2 className={styles.title}>
-          Process <span className={styles.outlineText}>de Travail</span>
+          <span style={{ color: '#FF7B00' }}>Process</span> <span className={styles.outlineText}>de Travail</span>
         </h2>
       </div>
 

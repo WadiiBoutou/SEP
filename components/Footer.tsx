@@ -14,20 +14,20 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="relative h-[36px] w-[36px]">
+              <div className="relative h-[48px] w-[48px]">
                 <Image
-                  src="/LOGO1.webp"
+                  src="/LOGO2.webp"
                   alt="Sud Extra Power Logo"
                   fill
                   className="object-contain"
-                  sizes="36px"
+                  sizes="48px"
                 />
               </div>
               <span className="font-syne font-bold text-lg tracking-tight text-white">
                 Sud Extra Power
               </span>
             </Link>
-            <p className="text-white/60 font-sans text-sm pr-4">
+            <p className="text-white/65 font-sans text-sm pr-4">
               {t("L'énergie propre, livrée au Sud.", "الطاقة النظيفة، نوصلها للجنوب.")}
             </p>
           </div>
@@ -36,8 +36,8 @@ export default function Footer() {
             <h4 className="font-syne font-bold text-white mb-6 uppercase tracking-wider text-sm">
               {t("Navigation", "تصفح")}
             </h4>
-            <ul className="flex flex-col gap-4 font-sans text-sm text-white/60">
-              <li><Link href="/" className="hover:text-brand-gold transition-colors">{t("Accueil", "الرئيسية")}</Link></li>
+            <ul className="flex flex-col gap-4 font-sans text-sm text-white/70">
+              <li><Link href="/" className="hover:text-brand-gold transition-colors duration-200">{t("Accueil", "الرئيسية")}</Link></li>
               <li><Link href="/about" className="hover:text-brand-gold transition-colors">{t("À Propos", "من نحن")}</Link></li>
               <li><Link href="/services" className="hover:text-brand-gold transition-colors">{t("Services", "خدماتنا")}</Link></li>
               <li><Link href="/contact" className="hover:text-brand-gold transition-colors">{t("Contact", "اتصل بنا")}</Link></li>
@@ -48,7 +48,7 @@ export default function Footer() {
             <h4 className="font-syne font-bold text-white mb-6 uppercase tracking-wider text-sm">
               {t("Services", "خدماتنا")}
             </h4>
-            <ul className="flex flex-col gap-4 font-sans text-sm text-white/60">
+            <ul className="flex flex-col gap-4 font-sans text-sm text-white/70">
               <li>{t("Installation Solaire PV", "تركيب الألواح الشمسية")}</li>
               <li>{t("Pompage Solaire", "الضخ بالطاقة الشمسية")}</li>
               <li>{t("Chauffe-eau Solaire", "سخانات المياه بالطاقة الشمسية")}</li>
@@ -60,7 +60,7 @@ export default function Footer() {
             <h4 className="font-syne font-bold text-white mb-6 uppercase tracking-wider text-sm">
               {t("Contact", "اتصل بنا")}
             </h4>
-            <ul className="flex flex-col gap-4 font-sans text-sm text-white/60">
+            <ul className="flex flex-col gap-4 font-sans text-sm text-white/70">
               <li>Swalem, Route de Tiznit, Inchaden</li>
               <li>Chtouka Ait Baha, Agadir</li>
               <li>+212 612-619329</li>
@@ -80,7 +80,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="relative border-t border-white/[0.06] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           <p className="text-white/40 text-xs font-sans">
             &copy; {new Date().getFullYear()} Sud Extra Power. {t("Tous droits réservés.", "جميع الحقوق محفوظة.")}
           </p>

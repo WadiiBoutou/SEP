@@ -34,13 +34,13 @@ export default function CtaBanner() {
           )}
         </h2>
         
-        <p className="font-sans text-[16px] font-light text-white/70 tracking-wide mb-12">
+        <p className="font-sans text-[16px] font-light text-white/80 tracking-wide mb-12">
           {t("Étude gratuite · Devis sous 24h · Installation certifiée", "دراسة مجانية · عرض في 24 ساعة · تركيب معتمد")}
         </p>
 
         <Link
           href="/contact"
-          className="relative bg-brand-orange hover:bg-brand-heat hover:shadow-[0_0_20px_rgba(255,77,0,0.5)] text-dark-bg transition-all px-12 py-5 text-sm uppercase tracking-widest font-bold font-sans rounded-none"
+          className="cta-glow relative bg-brand-orange hover:bg-brand-heat hover:shadow-[0_0_30px_rgba(255,77,0,0.6)] text-dark-bg transition-all px-12 py-5 text-sm uppercase tracking-widest font-bold font-sans rounded-none"
         >
           {t("Contactez-Nous", "اتصل بنا")}
         </Link>

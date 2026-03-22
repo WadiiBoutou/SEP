@@ -21,6 +21,26 @@ body {
   color: #ffffff;
 }
 
+/* Improved text selection */
+::selection {
+  background-color: rgba(255, 123, 0, 0.3);
+  color: #ffffff;
+}
+
+/* CTA glow at rest — apply to brand-orange CTAs for premium feel */
+.cta-glow {
+  box-shadow: 0 0 20px rgba(255, 123, 0, 0.18), 0 4px 16px rgba(0,0,0,0.3);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.cta-glow:hover {
+  box-shadow: 0 0 35px rgba(255, 123, 0, 0.45), 0 6px 24px rgba(0,0,0,0.4);
+}
+
+/* Input focus glow */
+input:focus, textarea:focus, select:focus {
+  filter: drop-shadow(0 2px 8px rgba(238, 188, 88, 0.12));
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -44,7 +64,7 @@ html {
 
 .whatsapp-btn:hover {
   animation: whatsapp-twitch 0.4s ease;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.7), 0 0 0 3px rgba(37, 211, 102, 0.15);
 }
 
 @keyframes whatsapp-twitch {

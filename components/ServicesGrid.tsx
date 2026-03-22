@@ -48,7 +48,7 @@ export default function ServicesGrid() {
             </span>
             <h2 className="font-syne font-extrabold text-5xl md:text-[72px] leading-[0.9] text-white tracking-[-0.03em]">
               {t("Domaines", "مجالات")} <br className="hidden lg:block" />
-              <span className="text-white/20 outline-text">{t("d'Excellence", "التميز")}</span>
+              <span className="outline-text-orange">{t("d'Excellence", "التميز")}</span>
             </h2>
           </div>
           <Link
@@ -107,6 +107,11 @@ export default function ServicesGrid() {
         .outline-text {
           -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
           color: transparent;
+        }
+        .outline-text-orange {
+          -webkit-text-stroke: 2px #FF7B00;
+          color: transparent;
+          filter: drop-shadow(0 0 12px rgba(255, 123, 0, 0.35));
         }
       `}</style>
     </section>
