@@ -7,6 +7,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLanguage } from "@/context/LanguageContext";
 import InteractiveSolarBackground from "@/components/InteractiveSolarBackground";
+import Spline from "@splinetool/react-spline/next";
 
 export default function ServicesPage() {
   const containerRef = useRef<HTMLElement>(null);
@@ -61,42 +62,7 @@ export default function ServicesPage() {
         });
       }
 
-      // HLS Video Loader for cross-browser support
-      const video = document.getElementById('hero-video') as HTMLVideoElement;
-      const videoSrc = "https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8";
-      
-      if (video) {
-        video.loop = true;
-        // Also force loop with event just in case
-        video.addEventListener('ended', () => {
-          video.play();
-        });
-
-        if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = videoSrc;
-          video.addEventListener('loadedmetadata', () => {
-            video.play().catch(e => console.error("Native play failed", e));
-          });
-        } else {
-          // Dynamic import of Hls.js to avoid bundle weight if not needed
-          const script = document.createElement('script');
-          script.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest';
-          script.onload = () => {
-            const Hls = (window as any).Hls;
-            if (Hls.isSupported()) {
-              const hls = new Hls();
-              hls.loadSource(videoSrc);
-              hls.attachMedia(video);
-              hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                video.play().catch(e => console.error("HLS play failed", e));
-              });
-            }
-          };
-          document.head.appendChild(script);
-        }
-      }
-
-      // SECTIONS 2, 3, 4, 5 — SERVICE SECTIONS
+      // SECTION 2, 3, 4, 5 — SERVICE SECTIONS
       const serviceSections = gsap.utils.toArray('.service-section');
       
       serviceSections.forEach((section: any, index: number) => {
@@ -172,31 +138,21 @@ export default function ServicesPage() {
       {/* SECTION 1 — PAGE HERO */}
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20 pb-20 overflow-hidden">
         {/* Video Background/Overlay Layer */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          {/* Fallback image — visible instantly, same filter as video */}
-          <img
-            src="/images/fallback.webp"
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover brightness-[0.9] contrast-[1.25]"
+        {/* Spline 3D Scene Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden bg-[#0C1A27]">
+          <div className="absolute inset-0 opacity-100 z-10 pointer-events-none bg-gradient-to-b from-[#0C1A27]/20 via-transparent to-[#0C1A27]" />
+          <Spline
+            scene="https://prod.spline.design/4sL7FIpm-FDQzufs/scene.splinecode" 
+            style={{ width: '100%', height: '100%' }}
+            className="w-full h-full"
           />
-          <video
-            id="hero-video"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover brightness-[0.9] contrast-[1.25]"
-          >
-            <source src="https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8" type="application/x-mpegURL" />
-          </video>
+          
           {/* Intense Orange Overlay for Tinting */}
-          <div className="absolute inset-0 bg-brand-orange/60 mix-blend-overlay z-1" />
-          <div className="absolute inset-0 bg-brand-orange/20 mix-blend-color z-1" />
+          <div className="absolute inset-0 bg-brand-orange/15 mix-blend-overlay z-1" />
+          <div className="absolute inset-0 bg-brand-orange/5 mix-blend-color z-1" />
           
           {/* Reduced Dark Overlays for Brightness & Detail */}
-          <div className="absolute inset-0 bg-[#0C1A27]/60 mix-blend-multiply z-1" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A27]/30 via-transparent to-[#0C1A27] z-2" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A27]/40 via-transparent to-[#0C1A27] z-2" />
         </div>
 
         {/* Grain texture overlay */}
