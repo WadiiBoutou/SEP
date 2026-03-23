@@ -67,13 +67,10 @@ export default function Preloader() {
       <div ref={contentRef} className="flex flex-col items-center max-w-[280px] w-full px-8 relative z-10">
         {/* Logo Section */}
         <div className="preloader-logo relative mb-14">
-          <Image 
-            src="/LOGO2.webp?v=3" 
+          <img 
+            src="/LOGO2.webp" 
             alt="SEP Logo" 
-            width={120} 
-            height={120} 
-            className="w-28 h-28 md:w-36 md:h-36 object-contain"
-            priority
+            className="w-28 h-28 md:w-36 md:h-36 object-contain relative z-10"
           />
           {/* Subtle glow behind logo */}
           <div className="absolute inset-0 bg-brand-orange/15 blur-3xl -z-10 rounded-full scale-150" />
