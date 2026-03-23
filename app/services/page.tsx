@@ -7,7 +7,12 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLanguage } from "@/context/LanguageContext";
 import InteractiveSolarBackground from "@/components/InteractiveSolarBackground";
-import Spline from "@splinetool/react-spline/next";
+import dynamic from "next/dynamic";
+
+const Spline = dynamic(() => import("@splinetool/react-spline/next"), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-[#0C1A27]" />,
+});
 
 export default function ServicesPage() {
   const containerRef = useRef<HTMLElement>(null);

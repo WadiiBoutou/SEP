@@ -16,7 +16,13 @@ export default function Preloader() {
     
     if (!hasSeenLoader) {
       setIsVisible(true);
-      
+    } else {
+      setIsVisible(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isVisible && contentRef.current) {
       const tl = gsap.timeline({
         onComplete: () => {
           sessionStorage.setItem("hasSeenLoader", "true");
@@ -37,11 +43,13 @@ export default function Preloader() {
       );
 
       // Progress bar (2.5 seconds total)
-      tl.to(progressBarRef.current, {
-        width: "100%",
-        duration: 2.5,
-        ease: "power1.inOut"
-      }, 0);
+      if (progressBarRef.current) {
+        tl.to(progressBarRef.current, {
+          width: "100%",
+          duration: 2.5,
+          ease: "power1.inOut"
+        }, 0);
+      }
 
       // Subtle scale pulse
       tl.to(".preloader-logo", {
@@ -51,11 +59,8 @@ export default function Preloader() {
         yoyo: true,
         ease: "sine.inOut"
       }, 0);
-
-    } else {
-      setIsVisible(false);
     }
-  }, []);
+  }, [isVisible]);
 
   if (!isVisible) return null;
 
