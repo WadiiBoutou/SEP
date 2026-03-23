@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { useLanguage } from "@/context/LanguageContext";
@@ -47,18 +48,27 @@ export default function HeroSection() {
     >
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
+        <Image 
+          src="/images/fallback_home.webp" 
+          alt="" 
+          fill 
+          className="object-cover opacity-60"
+          priority
+          sizes="100vw"
+        />
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover opacity-60"
+          poster="/images/fallback_home.webp"
+          className="w-full h-full object-cover opacity-60 relative z-10"
         >
           <source src="/sunny_sky.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark-bg/80 via-transparent to-brand-dark-bg" />
-        <div className="absolute inset-0 bg-brand-dark-bg/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark-bg/80 via-transparent to-brand-dark-bg z-20" />
+        <div className="absolute inset-0 bg-brand-dark-bg/20 z-20" />
       </div>
 
       {/* Grain noise overlay */}
