@@ -6,6 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLanguage } from "@/context/LanguageContext";
+import InteractiveSolarBackground from "@/components/InteractiveSolarBackground";
 
 /**
  * DUAL IMAGE SECTION COMPONENT
@@ -292,8 +293,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 2 — ORIGIN STORY */}
-      <section className="origin-section py-32 lg:py-48 px-6">
-        <div className="max-w-[800px] mx-auto text-center flex flex-col items-center">
+      <section className="relative origin-section py-32 lg:py-48 px-6">
+        <InteractiveSolarBackground baseOpacity={0.03} glowOpacity={0.25} />
+        <div className="relative z-10 max-w-[800px] mx-auto text-center flex flex-col items-center">
           <span className="origin-content font-sans text-brand-gold text-xs uppercase tracking-[0.2em] font-bold mb-10 block">
             {t("01 — ORIGINE", "01 — الأصل")}
           </span>
@@ -325,8 +327,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 3 — TEAM PHOTO + VALUES */}
-      <section className="team-values-section pb-32 lg:pb-48 px-6 lg:px-12 container mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center overflow-hidden">
+      <section className="relative team-values-section pb-32 lg:pb-48 px-6 lg:px-12 container mx-auto">
+        <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center overflow-hidden">
           
           <div className="team-image-container relative w-full aspect-[3/4] border border-white/5 bg-[#0F2035] p-0 rounded-none overflow-hidden">
             <Image

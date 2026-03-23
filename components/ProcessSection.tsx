@@ -87,7 +87,8 @@ export default function ProcessSection() {
 
   return (
     <section ref={sectionRef} className={styles.section}>
-      <div className={styles.header}>
+
+      <div className={`${styles.header} relative z-10`}>
         <span className={styles.label}>{t("// Méthodologie", "// المنهجية")}</span>
         <h2 className={styles.title}>
           <span style={{ color: '#FF7B00' }}>Process</span> <span className={styles.outlineText}>de Travail</span>

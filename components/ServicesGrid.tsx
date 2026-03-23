@@ -1,11 +1,23 @@
 "use client";
 
+import React, { useState, useRef, MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+import InteractiveSolarBackground from "@/components/InteractiveSolarBackground";
 
 export default function ServicesGrid() {
   const { t } = useLanguage();
+  const containerRef = useRef<HTMLElement>(null);
+  // Removed: const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
+
+  // Removed: const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+  // Removed:   if (!containerRef.current) return;
+  // Removed:   const rect = containerRef.current.getBoundingClientRect();
+  // Removed:   const x = e.clientX - rect.left;
+  // Removed:   const y = e.clientY - rect.top;
+  // Removed:   setMousePosition({ x, y });
+  // Removed: };
 
   const services = [
     {
@@ -38,13 +50,18 @@ export default function ServicesGrid() {
   ];
 
   return (
-    <section className="py-24 lg:py-40 bg-brand-dark-bg relative overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section 
+      ref={containerRef}
+      className="py-24 lg:py-40 bg-dark-bg relative overflow-hidden"
+    >
+      <InteractiveSolarBackground baseOpacity={0.03} glowOpacity={0.4} />
+
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 lg:mb-32 gap-8 md:gap-0">
           <div className="max-w-2xl">
-            <span className="block font-sans text-brand-orange text-xs uppercase tracking-[0.3em] font-bold mb-6">
-              {t("// Expertise Technique", "// الخبرة التقنية")}
+            <span className="font-sans text-sky-blue text-[10.5px] uppercase tracking-[0.35em] font-semibold mb-6 block">
+              {t("// NOS EXPERTISES", "// خبراتنا")}
             </span>
             <h2 className="font-syne font-extrabold text-5xl md:text-[72px] leading-[0.9] text-white tracking-[-0.03em]">
               {t("Domaines", "مجالات")} <br className="hidden lg:block" />
@@ -72,13 +89,14 @@ export default function ServicesGrid() {
                   src={service.image}
                   alt={service.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-brand-dark-bg/40 group-hover:bg-brand-dark-bg/10 transition-colors duration-500" />
                 
                 {/* Number Overlay */}
                 <div className="absolute top-6 left-6 z-10">
-                  <span className="font-syne font-black text-4xl text-white/10 group-hover:text-brand-orange/40 transition-colors">
+                  <span className="font-syne font-black text-4xl text-white/10 group-hover:text-sky-blue/80 transition-colors drop-shadow-md">
                     {service.id}
                   </span>
                 </div>
@@ -90,7 +108,7 @@ export default function ServicesGrid() {
                   {service.title}
                 </h3>
                 
-                <p className="font-sans text-[15px] text-white/50 font-light leading-relaxed mb-8">
+                <p className="font-sans text-[15.5px] text-white/75 font-light leading-relaxed mb-8">
                   {service.desc}
                 </p>
 

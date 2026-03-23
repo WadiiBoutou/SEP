@@ -48,7 +48,7 @@ export default function AboutStrip() {
         
         {/* Left Content */}
         <div className="flex flex-col pr-0 lg:pr-12">
-          <span className="about-content font-sans text-brand-orange text-[10px] uppercase tracking-[0.3em] font-bold mb-6">
+          <span className="about-content font-sans text-sky-blue text-[10.5px] uppercase tracking-[0.35em] font-semibold mb-6">
             {t("// 01 — NOTRE HISTOIRE", "// 01 — قصتنا")}
           </span>
           
@@ -64,7 +64,7 @@ export default function AboutStrip() {
           </p>
 
           <div className="about-content border-l-2 border-brand-orange pl-8 py-4 bg-brand-orange/[0.03] rounded-r-xl max-w-[540px]">
-            <p className="font-sans text-brand-orange italic text-[16px] leading-relaxed font-medium">
+            <p className="font-sans text-brand-orange italic text-[17px] leading-relaxed font-medium">
               &quot;{t("Chaque watt produit ici, c'est un pas vers l'indépendance énergétique du Maroc.", "كل واط يُنتج هنا، هو خطوة نحو الاستقلال الطاقي للمغرب.")}&quot;
             </p>
           </div>
@@ -100,7 +100,7 @@ export default function AboutStrip() {
           <div className="about-content absolute -bottom-4 right-10 bg-[#111] backdrop-blur-md border border-white/10 px-8 py-6 z-20 flex flex-col gap-2 rounded-xl shadow-2xl shadow-brand-orange/20 transform rotate-1">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
-              <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">
+              <span className="font-sans text-[10.5px] uppercase tracking-[0.2em] text-sky-blue font-bold">
                 {t("Basé à Agadir", "مقرنا في أكادير")}
               </span>
             </div>

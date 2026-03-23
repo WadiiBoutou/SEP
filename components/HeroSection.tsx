@@ -21,15 +21,7 @@ export default function HeroSection() {
         ease: "power3.out",
       });
 
-      // Counters
-      gsap.from(".stat-counter", {
-        textContent: 0,
-        duration: 2,
-        ease: "power2.out",
-        snap: { textContent: 1 },
-        stagger: 0.1,
-        delay: 0.5,
-      });
+
 
       // SVG Grain
       const grain = document.querySelector('.hero-grain') as HTMLElement;
@@ -80,7 +72,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-6 lg:px-12 flex-1 flex flex-col justify-center relative z-10 pt-16">
         <div className="max-w-4xl">
           <div className="overflow-hidden mb-5">
-            <span className="hero-line block font-sans text-brand-orange text-[10px] uppercase tracking-[0.3em] font-bold drop-shadow-[0_0_8px_rgba(255,123,0,0.5)]">
+            <span className="hero-line block font-sans text-sky-blue text-[10.5px] uppercase tracking-[0.35em] font-semibold drop-shadow-[0_0_8px_rgba(113,175,215,0.4)]">
               {t("// Énergie Solaire · Maroc", "// طاقة شمسية · المغرب")}
             </span>
           </div>

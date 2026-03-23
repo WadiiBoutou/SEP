@@ -36,6 +36,10 @@ export default function ImpactNumbers() {
 
   return (
     <section ref={containerRef} className="relative py-32 lg:py-48 bg-dark-bg overflow-hidden border-y border-white/5">
+      {/* Premium Glow Layer */}
+      <div className="absolute inset-0 bg-dark-bg" />
+      <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[1200px] h-[600px] bg-brand-orange/[0.03] rounded-[100%] blur-[120px] pointer-events-none" />
+
       {/* Giant Background Text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden mix-blend-overlay">
         <span className="font-syne font-extrabold text-[150px] sm:text-[250px] lg:text-[400px] text-white/[0.02] leading-none select-none tracking-tighter w-full text-center">

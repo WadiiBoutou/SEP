@@ -30,7 +30,7 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "SEP",
+  title: "SEP - Sud Extra Power",
   description: "Solutions solaires et hydrauliques à Agadir, Maroc.",
   icons: {
     icon: [

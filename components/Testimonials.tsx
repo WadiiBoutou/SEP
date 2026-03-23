@@ -36,8 +36,9 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-24 lg:py-40 bg-dark-bg">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section className="relative py-24 lg:py-40 bg-dark-bg">
+      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
 
         {/* Social Proof Stats Band */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.06] border border-white/[0.06] mb-20 overflow-hidden">
@@ -94,7 +95,7 @@ export default function Testimonials() {
                   <p className="font-sans font-semibold text-[14px] text-white mb-1">
                     {item.author}
                   </p>
-                  <p className="font-sans text-[11px] text-brand-gold tracking-wider uppercase">
+                  <p className="font-sans text-[11px] text-sky-blue font-semibold tracking-wider uppercase">
                     {item.role}
                   </p>
                 </div>

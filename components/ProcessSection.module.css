@@ -13,12 +13,12 @@
 .label {
   display: block;
   font-family: var(--font-sans);
-  color: #fbbf24;
-  font-size: 14px;
-  font-weight: 700;
+  color: #71AFD7;
+  font-size: 10.5px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
-  margin-bottom: 16px;
+  letter-spacing: 0.35em;
+  margin-bottom: 24px;
 }
 
 .title {
@@ -149,7 +149,8 @@
 .stepDesc {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.6;
 }
 

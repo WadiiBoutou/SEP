@@ -6,6 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLanguage } from "@/context/LanguageContext";
+import InteractiveSolarBackground from "@/components/InteractiveSolarBackground";
 
 export default function ServicesPage() {
   const containerRef = useRef<HTMLElement>(null);
@@ -208,7 +209,7 @@ export default function ServicesPage() {
 
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl">
           <div className="overflow-hidden mb-8">
-            <span className="hero-text-line block text-brand-gold text-[11px] font-medium uppercase tracking-[0.2em]">
+            <span className="hero-text-line block text-sky-blue text-[11px] font-semibold uppercase tracking-[0.25em]">
               {t("03 — NOS SERVICES", "03 — خدماتنا")}
             </span>
           </div>
@@ -256,7 +257,8 @@ export default function ServicesPage() {
 
       {/* SECTION 2 — SERVICE 01: INSTALLATION SOLAIRE PV */}
       <section id="installation-pv" className="service-section relative pt-24 pb-20 lg:py-40 border-t border-white/10 mx-auto max-w-[1600px] overflow-hidden">
-        <div className="flex flex-col-reverse lg:flex-row items-stretch w-full">
+        <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+        <div className="relative z-10 flex flex-col-reverse lg:flex-row items-stretch w-full">
           
           {/* Text Left (55%) */}
           <div className="service-text w-full lg:w-[55%] flex flex-col justify-center px-6 lg:pl-12 lg:pr-24 relative mt-16 lg:mt-0">
@@ -400,7 +402,8 @@ export default function ServicesPage() {
 
       {/* SECTION 4 — SERVICE 03: CHAUFFE-EAU SOLAIRE */}
       <section id="chauffe-eau" className="service-section relative pt-24 pb-20 lg:py-40 border-t border-white/10 mx-auto max-w-[1600px] overflow-hidden">
-        <div className="flex flex-col-reverse lg:flex-row items-stretch w-full">
+        <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+        <div className="relative z-10 flex flex-col-reverse lg:flex-row items-stretch w-full">
           
           <div className="service-text w-full lg:w-[55%] flex flex-col justify-center px-6 lg:pl-12 lg:pr-24 relative mt-16 lg:mt-0">
             <span className="ghost-number absolute top-[-60px] left-0 font-syne font-extrabold text-[150px] lg:text-[200px] text-white pointer-events-none opacity-0 leading-none select-none z-0">
@@ -512,8 +515,9 @@ export default function ServicesPage() {
       </section>
 
       {/* SECTION 6 — COMPARISON TABLE */}
-      <section className="comparison-section pt-16 pb-32 lg:pt-24 lg:pb-48 px-6 bg-[#0F2035] border-y border-white/5">
-        <div className="container mx-auto">
+      <section className="relative comparison-section pt-16 pb-32 lg:pt-24 lg:pb-48 px-6 bg-[#0F2035] border-y border-white/5">
+        <InteractiveSolarBackground baseOpacity={0.03} glowOpacity={0.25} />
+        <div className="relative z-10 container mx-auto">
           {/* Header */}
           <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="max-w-[600px]">
