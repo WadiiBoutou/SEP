@@ -9,7 +9,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import InteractiveSolarBackground from "@/components/InteractiveSolarBackground";
 import dynamic from "next/dynamic";
 
-const Spline = dynamic(() => import("@splinetool/react-spline/next"), {
+const Spline = dynamic(() => import("@splinetool/react-spline"), {
   ssr: false,
   loading: () => <div className="absolute inset-0 bg-[#0C1A27]" />,
 });
@@ -69,7 +69,7 @@ export default function ServicesPage() {
 
       // SECTION 2, 3, 4, 5 — SERVICE SECTIONS
       const serviceSections = gsap.utils.toArray('.service-section');
-      
+
       serviceSections.forEach((section: any, index: number) => {
         // Alternating layout text/img slide directions
         // Sections 0 and 2: Text Left (from left), Image Right (from right)
@@ -79,15 +79,16 @@ export default function ServicesPage() {
         const imgBlock = section.querySelector('.service-image');
         const ghostNumber = section.querySelector('.ghost-number');
 
-        let isReversedLayout = index % 2 !== 0; 
-        
+        let isReversedLayout = index % 2 !== 0;
+
         let textStartX = isReversedLayout ? 60 : -60;
         let imgStartX = isReversedLayout ? -60 : 60;
 
         // Slide text
-        gsap.fromTo(textBlock, 
+        gsap.fromTo(textBlock,
           { x: textStartX, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.9, ease: "power3.out", 
+          {
+            x: 0, opacity: 1, duration: 0.9, ease: "power3.out",
             scrollTrigger: {
               trigger: section,
               start: "top 75%",
@@ -96,9 +97,10 @@ export default function ServicesPage() {
         );
 
         // Slide image
-        gsap.fromTo(imgBlock, 
+        gsap.fromTo(imgBlock,
           { x: imgStartX, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.9, ease: "power3.out", 
+          {
+            x: 0, opacity: 1, duration: 0.9, ease: "power3.out",
             scrollTrigger: {
               trigger: section,
               start: "top 75%",
@@ -110,7 +112,8 @@ export default function ServicesPage() {
         if (ghostNumber) {
           gsap.fromTo(ghostNumber,
             { opacity: 0 },
-            { opacity: 0.025, duration: 1.4, ease: "none",
+            {
+              opacity: 0.025, duration: 1.4, ease: "none",
               scrollTrigger: {
                 trigger: section,
                 start: "top 75%",
@@ -139,29 +142,40 @@ export default function ServicesPage() {
 
   return (
     <article ref={containerRef} className="bg-dark-bg min-h-screen pt-32 lg:pt-0 overflow-hidden font-sans">
-      
+
       {/* SECTION 1 — PAGE HERO */}
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20 pb-20 overflow-hidden">
         {/* Video Background/Overlay Layer */}
-        {/* Spline 3D Scene Background */}
+        {/* Spline 3D Scene Background — Adjust bottom opacity here (/85) */}
         <div className="absolute inset-0 z-0 overflow-hidden bg-[#0C1A27]">
-          <div className="absolute inset-0 opacity-100 z-10 pointer-events-none bg-gradient-to-b from-[#0C1A27]/20 via-transparent to-[#0C1A27]" />
+          <div className="absolute inset-0 opacity-100 z-10 pointer-events-none bg-gradient-to-b from-[#0C1A27]/20 via-transparent to-[#0C1A27]/90" />
           <Spline
-            scene="https://prod.spline.design/4sL7FIpm-FDQzufs/scene.splinecode" 
-            style={{ width: '100%', height: '100%' }}
+            scene="https://prod.spline.design/4sL7FIpm-FDQzufs/scene.splinecode"
+            style={{ width: '100%', height: 'calc(100% + 100px)', position: 'absolute', top: '-50px', left: 0 }}
             className="w-full h-full"
+            onLoad={(spline) => {
+              // Trial various common names for text objects in this scene
+              const namesToHide = ['RAY OF LIGHT', 'Ray of Light', 'RAY', 'LIGHT', 'Text', 'Text 1', 'Text 2'];
+              namesToHide.forEach(name => {
+                const obj = spline.findObjectByName(name);
+                if (obj) {
+                  obj.visible = false;
+                  console.log(`Successfully hidden Spline object: ${name}`);
+                }
+              });
+            }}
           />
-          
+
           {/* Intense Orange Overlay for Tinting */}
           <div className="absolute inset-0 bg-brand-orange/15 mix-blend-overlay z-1" />
           <div className="absolute inset-0 bg-brand-orange/5 mix-blend-color z-1" />
-          
-          {/* Reduced Dark Overlays for Brightness & Detail */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A27]/40 via-transparent to-[#0C1A27] z-2" />
+
+          {/* Detailed Dark Overlay — Adjust bottom opacity here (/85) */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A27]/30 via-transparent to-[#0C1A27]/85 z-2" />
         </div>
 
         {/* Grain texture overlay */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-[0.035] w-[200%] h-[200%] -left-[50%] -top-[50%] z-3"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
@@ -175,7 +189,7 @@ export default function ServicesPage() {
             </span>
           </div>
 
-          <h1 className="font-syne font-extrabold text-[42px] sm:text-[56px] md:text-[70px] lg:text-[clamp(65px,7.5vw,110px)] leading-[0.85] tracking-[-0.05em] text-white flex flex-col items-center mb-10">
+          <h1 className="font-syne font-extrabold text-[42px] sm:text-[56px] md:text-[70px] lg:text-[clamp(65px,7.5vw,110px)] leading-[0.85] tracking-[-0.05em] text-white flex flex-col items-center mb-10 drop-shadow-[0_15px_40px_rgba(0,0,0,0.85)]">
             <div className="overflow-hidden"><span className="hero-text-line block">{t("Des Solutions.", "حلول.")}</span></div>
             <div className="overflow-hidden"><span className="hero-text-line block">{t("Pas des", "وليست")}</span></div>
             <div className="overflow-hidden">
@@ -220,7 +234,7 @@ export default function ServicesPage() {
       <section id="installation-pv" className="service-section relative pt-24 pb-20 lg:py-40 border-t border-white/10 mx-auto max-w-[1600px] overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
         <div className="relative z-10 flex flex-col-reverse lg:flex-row items-stretch w-full">
-          
+
           {/* Text Left (55%) */}
           <div className="service-text w-full lg:w-[55%] flex flex-col justify-center px-6 lg:pl-12 lg:pr-24 relative mt-16 lg:mt-0">
             {/* Ghost Number absolute top-0 left-0 inside left container */}
@@ -232,11 +246,11 @@ export default function ServicesPage() {
               <span className="font-sans text-brand-gold text-[12px] uppercase tracking-[0.2em] font-medium mb-6 block" style={{ fontVariant: 'small-caps' }}>
                 {t("Service 01", "خدمة 01")}
               </span>
-              
+
               <h2 className="font-syne font-extrabold text-[28px] sm:text-4xl md:text-[48px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
                 {t("Installation Solaire Photovoltaïque.", "تركيب الطاقة الشمسية الكهروضوئية.")}
               </h2>
-              
+
               <p className="font-sans text-[17px] font-normal text-white/70 max-w-[480px] leading-[1.8] mb-12">
                 {t(
                   "Du studio en ville à l'usine en zone industrielle, nous concevons et déployons des systèmes PV adaptés à votre consommation, votre toit et votre budget.",
@@ -268,7 +282,7 @@ export default function ServicesPage() {
 
           {/* Image Right (45%) */}
           <div className="service-image w-full lg:w-[45%] h-[50vh] lg:h-auto min-h-[500px] relative">
-            <div 
+            <div
               className="absolute inset-y-0 left-0 w-[40%] z-10 pointer-events-none hidden lg:block"
               style={{ background: lang === 'ar' ? 'linear-gradient(to right, #0C1A27 0%, transparent 100%)' : 'linear-gradient(to right, #0C1A27 0%, transparent 100%)' }}
             />
@@ -283,7 +297,7 @@ export default function ServicesPage() {
               sizes="(max-width: 1024px) 100vw, 45vw"
               loading="lazy"
             />
-            
+
             {/* Floating Badge (Bottom-Left overlap) */}
             <div className="absolute -bottom-6 left-6 lg:-left-12 bg-[#0F2035] border border-white/10 px-4 py-3 z-20 shadow-2xl rounded-none">
               <span className="font-sans font-medium text-[12px] text-brand-gold whitespace-nowrap">
@@ -297,7 +311,7 @@ export default function ServicesPage() {
       {/* SECTION 3 — SERVICE 02: POMPAGE SOLAIRE (REVERSED) */}
       <section id="pompage-solaire" className="service-section relative pt-24 pb-20 lg:py-40 border-t border-white/10 mx-auto max-w-[1600px] overflow-hidden">
         <div className="flex flex-col lg:flex-row items-stretch w-full">
-          
+
           {/* Image Left (45%) on Desktop, stacks on top for Mobile */}
           <div className="service-image w-full lg:w-[45%] h-[50vh] lg:h-auto min-h-[500px] relative order-1 lg:order-none">
             {/* Gradient fade right side of image into background */}
@@ -324,11 +338,11 @@ export default function ServicesPage() {
               <span className="font-sans text-brand-gold text-[12px] uppercase tracking-[0.2em] font-medium mb-6 block" style={{ fontVariant: 'small-caps' }}>
                 {t("Service 02", "خدمة 02")}
               </span>
-              
+
               <h2 className="font-syne font-extrabold text-[28px] sm:text-4xl md:text-[48px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
                 {t("Pompage Solaire & Irrigation.", "الضخ بالطاقة الشمسية والري.")}
               </h2>
-              
+
               <p className="font-sans text-[17px] font-normal text-white/70 max-w-[480px] leading-[1.8] mb-12">
                 {t(
                   "L'eau et le soleil — deux ressources infinies au Maroc. Nos systèmes de pompage transforment l'une grâce à l'autre, pour irriguer, abreuver et alimenter sans raccordement réseau.",
@@ -365,7 +379,7 @@ export default function ServicesPage() {
       <section id="chauffe-eau" className="service-section relative pt-24 pb-20 lg:py-40 border-t border-white/10 mx-auto max-w-[1600px] overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
         <div className="relative z-10 flex flex-col-reverse lg:flex-row items-stretch w-full">
-          
+
           <div className="service-text w-full lg:w-[55%] flex flex-col justify-center px-6 lg:pl-12 lg:pr-24 relative mt-16 lg:mt-0">
             <span className="ghost-number absolute top-[-60px] left-0 font-syne font-extrabold text-[150px] lg:text-[200px] text-white pointer-events-none opacity-0 leading-none select-none z-0">
               03
@@ -375,11 +389,11 @@ export default function ServicesPage() {
               <span className="font-sans text-brand-gold text-[12px] uppercase tracking-[0.2em] font-medium mb-6 block" style={{ fontVariant: 'small-caps' }}>
                 {t("Service 03", "خدمة 03")}
               </span>
-              
+
               <h2 className="font-syne font-extrabold text-[28px] sm:text-4xl md:text-[48px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
                 {t("Chauffe-eau Solaire Thermique.", "سخانات المياه بالطاقة الشمسية.")}
               </h2>
-              
+
               <p className="font-sans text-[17px] font-normal text-white/70 max-w-[480px] leading-[1.8] mb-12">
                 {t(
                   "La production d'eau chaude représente jusqu'à 30% de la facture énergétique d'un foyer ou d'un hôtel. Nos capteurs thermiques éliminent ce coût — durablement.",
@@ -421,7 +435,7 @@ export default function ServicesPage() {
       {/* SECTION 5 — SERVICE 04: MAINTENANCE & SAV (REVERSED) */}
       <section id="maintenance" className="service-section relative pt-24 pb-20 lg:py-40 border-t border-white/10 mx-auto max-w-[1600px] overflow-hidden">
         <div className="flex flex-col lg:flex-row items-stretch w-full">
-          
+
           <div className="service-image w-full lg:w-[45%] h-[50vh] lg:h-auto min-h-[500px] relative order-1 lg:order-none">
             <div className="absolute inset-y-0 right-0 w-[25%] lg:bg-gradient-to-l from-dark-bg to-transparent z-10 pointer-events-none" />
 
@@ -444,11 +458,11 @@ export default function ServicesPage() {
               <span className="font-sans text-brand-gold text-[12px] uppercase tracking-[0.2em] font-medium mb-6 block" style={{ fontVariant: 'small-caps' }}>
                 {t("Service 04", "خدمة 04")}
               </span>
-              
+
               <h2 className="font-syne font-extrabold text-[28px] sm:text-4xl md:text-[48px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
                 {t("Maintenance & Support Long Terme.", "صيانة ودعم طويل الأمد.")}
               </h2>
-              
+
               <p className="font-sans text-[17px] font-normal text-white/70 max-w-[480px] leading-[1.8] mb-12">
                 {t(
                   "Une installation solaire dure 25 ans. Notre contrat de maintenance aussi. Nous assurons la performance de votre système dans la durée — pas seulement à la livraison.",
@@ -492,9 +506,9 @@ export default function ServicesPage() {
                 {t("Un récapitulatif rapide pour identifier la solution adaptée à votre profil.", "ملخص سريع لتحديد الحل المناسب لك.")}
               </p>
             </div>
-            
+
             <div className="relative w-[180px] h-[180px] md:w-[220px] md:h-[220px] shrink-0 transform -rotate-6 drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-              <Image 
+              <Image
                 src="/3D SEP logo.webp"
                 alt="3D SEP Logo"
                 fill
@@ -507,7 +521,7 @@ export default function ServicesPage() {
           {/* Table Container - Horizontally scrollable on mobile */}
           <div className="w-full overflow-x-auto hide-scrollbar">
             <div className="min-w-[900px]">
-              
+
               {/* Table Header Row */}
               <div className="grid grid-cols-5 bg-[#245594] border border-white/[0.07]">
                 <div className="col-span-1 p-6 text-left border-r border-white/[0.07]">
@@ -529,44 +543,44 @@ export default function ServicesPage() {
 
               {/* Data Rows */}
               {[
-                { 
-                  critere: t("Profil client", "ملف العميل"), 
-                  r1: t("Résidentiel / Industriel", "سكني / صناعي"), 
-                  r2: t("Agriculteur / Rural", "مزارع / قروي"), 
-                  r3: t("Hôtel / Villa", "فندق / فيلا"), 
-                  r4: t("Tout client SEP", "كل عميل لـ SEP") 
+                {
+                  critere: t("Profil client", "ملف العميل"),
+                  r1: t("Résidentiel / Industriel", "سكني / صناعي"),
+                  r2: t("Agriculteur / Rural", "مزارع / قروي"),
+                  r3: t("Hôtel / Villa", "فندق / فيلا"),
+                  r4: t("Tout client SEP", "كل عميل لـ SEP")
                 },
-                { 
-                  critere: t("Économie annuelle", "التوفير السنوي"), 
-                  r1: t("60–80% facture élec", "60-80٪ فاتورة الكهرباء"), 
-                  r2: t("Zéro coût pompage", "تكلفة ضخ صفرية"), 
-                  r3: t("25–35% facture", "25-35٪ من الفاتورة"), 
-                  r4: t("+5% performance", "+5٪ أداء") 
+                {
+                  critere: t("Économie annuelle", "التوفير السنوي"),
+                  r1: t("60–80% facture élec", "60-80٪ فاتورة الكهرباء"),
+                  r2: t("Zéro coût pompage", "تكلفة ضخ صفرية"),
+                  r3: t("25–35% facture", "25-35٪ من الفاتورة"),
+                  r4: t("+5% performance", "+5٪ أداء")
                 },
-                { 
-                  critere: t("Délai installation", "وقت التركيب"), 
-                  r1: t("3–7 jours", "3-7 أيام"), 
-                  r2: t("2–5 jours", "2-5 أيام"), 
-                  r3: t("1–2 jours", "1-2 أيام"), 
-                  r4: t("Contrat annuel", "عقد سنوي") 
+                {
+                  critere: t("Délai installation", "وقت التركيب"),
+                  r1: t("3–7 jours", "3-7 أيام"),
+                  r2: t("2–5 jours", "2-5 أيام"),
+                  r3: t("1–2 jours", "1-2 أيام"),
+                  r4: t("Contrat annuel", "عقد سنوي")
                 },
-                { 
-                  critere: t("Garantie", "ضمان"), 
-                  r1: t("25 ans panneaux", "25 سنة لوحات"), 
-                  r2: t("5 ans équipements", "5 سنوات معدات"), 
-                  r3: t("5 ans capteurs", "5 سنوات سخانات"), 
-                  r4: t("Incluse", "متضمن") 
+                {
+                  critere: t("Garantie", "ضمان"),
+                  r1: t("25 ans panneaux", "25 سنة لوحات"),
+                  r2: t("5 ans équipements", "5 سنوات معدات"),
+                  r3: t("5 ans capteurs", "5 سنوات سخانات"),
+                  r4: t("Incluse", "متضمن")
                 },
-                { 
-                  critere: t("ROI moyen", "متوسط العائد"), 
-                  r1: t("4–6 ans", "4-6 سنوات"), 
-                  r2: t("2–3 ans", "2-3 سنوات"), 
-                  r3: t("3–4 ans", "3-4 سنوات"), 
-                  r4: t("Immédiat", "فوري") 
+                {
+                  critere: t("ROI moyen", "متوسط العائد"),
+                  r1: t("4–6 ans", "4-6 سنوات"),
+                  r2: t("2–3 ans", "2-3 سنوات"),
+                  r3: t("3–4 ans", "3-4 سنوات"),
+                  r4: t("Immédiat", "فوري")
                 },
               ].map((row, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className={`table-row-animate flex grid grid-cols-5 border-b border-x border-white/[0.07] ${index % 2 === 0 ? 'bg-white/[0.02]' : 'bg-[#0F2035]'}`}
                 >
                   <div className="col-span-1 p-6 flex items-center justify-start border-r border-white/[0.07]">
@@ -628,14 +642,14 @@ export default function ServicesPage() {
           <h2 className="font-syne font-extrabold text-[30px] sm:text-4xl md:text-[64px] text-white tracking-[-0.02em] leading-tight mb-8">
             {t("Votre Projet Mérite le Meilleur.", "مشروعكم يستحق الأفضل.")}
           </h2>
-          
+
           <p className="font-sans text-[16px] font-light text-white/70 tracking-wide mb-12">
             {t("Audit gratuit · Devis sous 24h · Équipe certifiée · Suivi à vie", "تدقيق مجاني · عرض أسعار في 24 ساعة · فريق معتمد · متابعة مدى الحياة")}
           </p>
 
           <Link
-             href="/contact"
-             className="relative bg-brand-orange hover:bg-brand-heat hover:shadow-[0_0_20px_rgba(255,77,0,0.5)] text-dark-bg transition-all px-12 py-5 text-sm uppercase tracking-widest font-bold font-sans rounded-none"
+            href="/contact"
+            className="relative bg-brand-orange hover:bg-brand-heat hover:shadow-[0_0_20px_rgba(255,77,0,0.5)] text-dark-bg transition-all px-12 py-5 text-sm uppercase tracking-widest font-bold font-sans rounded-none"
           >
             {t("Lancer Mon Projet", "إطلاق مشروعي")}
           </Link>
