@@ -72,18 +72,18 @@ export default function HeroSection() {
       <div className="container mx-auto px-6 lg:px-12 flex-1 flex flex-col justify-center relative z-10 pt-16">
         <div className="max-w-4xl">
           <div className="overflow-hidden mb-5">
-            <span className="hero-line block font-sans text-sky-blue text-[10.5px] uppercase tracking-[0.35em] font-semibold drop-shadow-[0_0_8px_rgba(113,175,215,0.4)]">
+            <span className="hero-line block font-sans text-sky-blue text-[9px] sm:text-[10.5px] uppercase tracking-[0.35em] font-semibold drop-shadow-[0_0_8px_rgba(113,175,215,0.4)]">
               {t("// Énergie Solaire · Maroc", "// طاقة شمسية · المغرب")}
             </span>
           </div>
 
-          <h1 className="font-syne font-extrabold text-[54px] leading-[0.88] tracking-[-0.04em] md:text-[84px] lg:text-[105px] text-white overflow-hidden mb-10">
+          <h1 className="font-syne font-extrabold text-[40px] sm:text-[54px] leading-[0.88] tracking-[-0.04em] md:text-[84px] lg:text-[105px] text-white overflow-hidden mb-10">
             <span className="hero-line block">{t("L'Énergie", "الطاقة")} <span className="text-brand-glow drop-shadow-[0_0_20px_rgba(255,170,0,0.4)]">{t("SOLAIRE", "الشمسية")}</span></span>
             <span className="hero-line block">{t("Qui Change", "التي تغير")} <span className="text-brand-heat drop-shadow-[0_0_25px_rgba(255,77,0,0.6)]">{t("Tout.", "كل شيء.")}</span></span>
           </h1>
 
           <div className="overflow-hidden mb-10">
-            <p className="hero-line font-sans text-md font-light text-white/80 max-w-[480px] leading-relaxed">
+            <p className="hero-line font-sans text-sm sm:text-md font-light text-white/80 max-w-[480px] leading-relaxed">
               {t(
                 "Depuis Agadir, nous propulsons l'avenir énergétique du Maroc with des installations photovoltaïques de pointe et une expertise technique inégalée.",
                 "من أكادير، ندفع بمستقبل الطاقة في المغرب من خلال تركيبات كهروضوئية متطورة وخبرة تقنية لا مثيل لها."

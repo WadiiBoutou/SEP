@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import LenisScrollBar from "@/components/LenisScrollBar";
+import Preloader from "@/components/Preloader";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="fr" dir="ltr" className={`${syne.variable} ${dmSans.variable} ${cairo.variable}`}>
       <body className="font-sans antialiased overflow-x-hidden">
+        <Preloader />
         <LanguageProvider>
           <SmoothScroll>
             <Navbar />

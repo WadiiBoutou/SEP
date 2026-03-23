@@ -214,7 +214,7 @@ export default function ServicesPage() {
             </span>
           </div>
 
-          <h1 className="font-syne font-extrabold text-[56px] md:text-[80px] lg:text-[clamp(80px,8vw,130px)] leading-[0.85] tracking-[-0.05em] text-white flex flex-col items-center mb-10">
+          <h1 className="font-syne font-extrabold text-[42px] sm:text-[56px] md:text-[80px] lg:text-[clamp(80px,8vw,130px)] leading-[0.85] tracking-[-0.05em] text-white flex flex-col items-center mb-10">
             <div className="overflow-hidden"><span className="hero-text-line block">{t("Des Solutions.", "حلول.")}</span></div>
             <div className="overflow-hidden"><span className="hero-text-line block">{t("Pas des", "وليست")}</span></div>
             <div className="overflow-hidden">
@@ -263,7 +263,7 @@ export default function ServicesPage() {
           {/* Text Left (55%) */}
           <div className="service-text w-full lg:w-[55%] flex flex-col justify-center px-6 lg:pl-12 lg:pr-24 relative mt-16 lg:mt-0">
             {/* Ghost Number absolute top-0 left-0 inside left container */}
-            <span className="ghost-number absolute top-[-60px] left-0 font-syne font-extrabold text-[150px] lg:text-[200px] text-white pointer-events-none opacity-0 leading-none select-none z-0">
+            <span className="ghost-number absolute top-[-60px] left-0 font-syne font-extrabold text-[100px] lg:text-[200px] text-white pointer-events-none opacity-0 leading-none select-none z-0">
               01
             </span>
 
@@ -272,7 +272,7 @@ export default function ServicesPage() {
                 {t("Service 01", "خدمة 01")}
               </span>
               
-              <h2 className="font-syne font-extrabold text-4xl md:text-[56px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
+              <h2 className="font-syne font-extrabold text-[28px] sm:text-4xl md:text-[56px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
                 {t("Installation Solaire Photovoltaïque.", "تركيب الطاقة الشمسية الكهروضوئية.")}
               </h2>
               
@@ -364,7 +364,7 @@ export default function ServicesPage() {
                 {t("Service 02", "خدمة 02")}
               </span>
               
-              <h2 className="font-syne font-extrabold text-4xl md:text-[56px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
+              <h2 className="font-syne font-extrabold text-[28px] sm:text-4xl md:text-[56px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
                 {t("Pompage Solaire & Irrigation.", "الضخ بالطاقة الشمسية والري.")}
               </h2>
               
@@ -415,7 +415,7 @@ export default function ServicesPage() {
                 {t("Service 03", "خدمة 03")}
               </span>
               
-              <h2 className="font-syne font-extrabold text-4xl md:text-[56px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
+              <h2 className="font-syne font-extrabold text-[28px] sm:text-4xl md:text-[56px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
                 {t("Chauffe-eau Solaire Thermique.", "سخانات المياه بالطاقة الشمسية.")}
               </h2>
               
@@ -484,7 +484,7 @@ export default function ServicesPage() {
                 {t("Service 04", "خدمة 04")}
               </span>
               
-              <h2 className="font-syne font-extrabold text-4xl md:text-[56px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
+              <h2 className="font-syne font-extrabold text-[28px] sm:text-4xl md:text-[56px] text-white leading-[1.1] tracking-[-0.02em] mb-6">
                 {t("Maintenance & Support Long Terme.", "صيانة ودعم طويل الأمد.")}
               </h2>
               
@@ -524,7 +524,7 @@ export default function ServicesPage() {
               <span className="block font-sans text-brand-gold text-[12px] uppercase tracking-[0.2em] font-medium mb-4">
                 {t("COMPARATIF", "مقارنة")}
               </span>
-              <h2 className="font-syne font-extrabold text-[44px] md:text-[56px] leading-tight text-white mb-4">
+              <h2 className="font-syne font-extrabold text-[32px] sm:text-[44px] md:text-[56px] leading-tight text-white mb-4">
                 {t("Quel Service Pour Vous ?", "ما هي الخدمة الأنسب لك؟")}
               </h2>
               <p className="font-sans text-[15px] font-light text-white/55 leading-relaxed">
@@ -664,7 +664,7 @@ export default function ServicesPage() {
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center text-center">
-          <h2 className="font-syne font-extrabold text-4xl sm:text-5xl md:text-[64px] text-white tracking-[-0.02em] leading-tight mb-8">
+          <h2 className="font-syne font-extrabold text-[30px] sm:text-4xl md:text-[64px] text-white tracking-[-0.02em] leading-tight mb-8">
             {t("Votre Projet Mérite le Meilleur.", "مشروعكم يستحق الأفضل.")}
           </h2>
           

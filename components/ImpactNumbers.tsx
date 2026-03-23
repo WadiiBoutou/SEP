@@ -42,7 +42,7 @@ export default function ImpactNumbers() {
 
       {/* Giant Background Text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden mix-blend-overlay">
-        <span className="font-syne font-extrabold text-[150px] sm:text-[250px] lg:text-[400px] text-white/[0.02] leading-none select-none tracking-tighter w-full text-center">
+        <span className="font-syne font-extrabold text-[120px] sm:text-[150px] md:text-[250px] lg:text-[400px] text-white/[0.02] leading-none select-none tracking-tighter w-full text-center">
           SEP
         </span>
       </div>
@@ -52,7 +52,7 @@ export default function ImpactNumbers() {
           
           <div className="flex flex-col items-center text-center lg:border-r border-white/10 px-4">
             <div className="flex items-baseline mb-2">
-              <span className="impact-counter font-syne font-extrabold text-[72px] lg:text-[96px] text-brand-gold leading-none" data-target="3000">
+              <span className="impact-counter font-syne font-extrabold text-[58px] lg:text-[96px] text-brand-gold leading-none" data-target="3000">
                 3000
               </span>
             </div>
@@ -63,10 +63,10 @@ export default function ImpactNumbers() {
 
           <div className="flex flex-col items-center text-center lg:border-r border-white/10 px-4">
             <div className="flex items-baseline mb-2">
-              <span className="impact-counter font-syne font-extrabold text-[72px] lg:text-[96px] text-brand-gold leading-none" data-target="500">
+              <span className="impact-counter font-syne font-extrabold text-[58px] lg:text-[96px] text-brand-gold leading-none" data-target="500">
                 500
               </span>
-              <span className="font-syne font-extrabold text-[72px] lg:text-[96px] text-brand-gold leading-none">+</span>
+              <span className="font-syne font-extrabold text-[58px] lg:text-[96px] text-brand-gold leading-none">+</span>
             </div>
             <span className="font-sans text-[12px] uppercase tracking-[0.2em] text-white/40 font-bold whitespace-nowrap">
               {t("Projets livrés", "مشاريع منجزة")}
@@ -75,10 +75,10 @@ export default function ImpactNumbers() {
 
           <div className="flex flex-col items-center text-center lg:border-r border-white/10 px-4">
             <div className="flex items-baseline mb-2">
-              <span className="impact-counter font-syne font-extrabold text-[72px] lg:text-[96px] text-brand-gold leading-none" data-target="10">
+              <span className="impact-counter font-syne font-extrabold text-[58px] lg:text-[96px] text-brand-gold leading-none" data-target="10">
                 10
               </span>
-              <span className="font-syne font-extrabold text-[48px] lg:text-[64px] text-brand-gold leading-none ml-2">MW</span>
+              <span className="font-syne font-extrabold text-[38px] lg:text-[64px] text-brand-gold leading-none ml-2">MW</span>
             </div>
             <span className="font-sans text-[12px] uppercase tracking-[0.2em] text-white/40 font-bold whitespace-nowrap">
               {t("Capacité installée", "القدرة المركبة")}
@@ -87,10 +87,10 @@ export default function ImpactNumbers() {
 
           <div className="flex flex-col items-center text-center px-4">
             <div className="flex items-baseline mb-2">
-              <span className="impact-counter font-syne font-extrabold text-[72px] lg:text-[96px] text-brand-gold leading-none" data-target="98">
+              <span className="impact-counter font-syne font-extrabold text-[58px] lg:text-[96px] text-brand-gold leading-none" data-target="98">
                 98
               </span>
-              <span className="font-syne font-extrabold text-[72px] lg:text-[96px] text-brand-gold leading-none">%</span>
+              <span className="font-syne font-extrabold text-[58px] lg:text-[96px] text-brand-gold leading-none">%</span>
             </div>
             <span className="font-sans text-[12px] uppercase tracking-[0.2em] text-white/40 font-bold whitespace-nowrap">
               {t("Taux de satisfaction", "نسبة الرضا")}

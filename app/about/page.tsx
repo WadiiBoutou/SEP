@@ -250,12 +250,12 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 lg:px-12 relative z-30">
           <div className="max-w-4xl pt-20 lg:pt-0 lg:-ml-8">
             <div className="overflow-hidden mb-6 py-1">
-              <span className="hero-line block font-sans text-brand-gold text-[12px] font-bold uppercase tracking-[0.3em] drop-shadow-md">
+              <span className="hero-line block font-sans text-brand-gold text-[10px] sm:text-[12px] font-bold uppercase tracking-[0.3em] drop-shadow-md">
                 {t("02 — À PROPOS", "02 — من نحن")}
               </span>
             </div>
 
-            <h1 className="font-syne font-extrabold text-[44px] md:text-[68px] lg:text-[clamp(52px,6vw,84px)] leading-[1.1] tracking-[-0.04em] text-white mb-10 drop-shadow-2xl">
+            <h1 className="font-syne font-extrabold text-[36px] sm:text-[44px] md:text-[68px] lg:text-[clamp(52px,6vw,84px)] leading-[1.1] tracking-[-0.04em] text-white mb-10 drop-shadow-2xl">
               <div className="overflow-hidden py-1 pr-4"><span className="hero-line block">{t("Construire", "بناء")}</span></div>
               <div className="overflow-hidden py-1 pr-4"><span className="hero-line block">{t("l'Avenir", "المستقبل")}</span></div>
               <div className="overflow-hidden py-1 pr-4"><span className="hero-line block text-brand-orange drop-shadow-[0_0_15px_rgba(255,123,0,0.3)]">{t("Énergétique.", "الطاقي.")}</span></div>
@@ -300,7 +300,7 @@ export default function AboutPage() {
             {t("01 — ORIGINE", "01 — الأصل")}
           </span>
           
-          <h2 className="origin-content font-syne font-bold text-[32px] md:text-[42px] leading-[1.1] text-white mb-12 text-balance">
+          <h2 className="origin-content font-syne font-bold text-[28px] sm:text-[32px] md:text-[42px] leading-[1.1] text-white mb-12 text-balance">
             &quot;{t(
               "Tout a commencé avec une conviction simple : le Maroc possède l'une des ressources solaires les plus riches au monde — elle devait être accessible à tous.",
               "بدأ كل شيء بقناعة بسيطة: يمتلك المغرب إحدى أغنى الموارد الشمسية في العالم — التي يجب أن تكون في متناول الجميع."
@@ -345,7 +345,7 @@ export default function AboutPage() {
             <span className="font-sans text-brand-gold text-xs uppercase tracking-[0.2em] font-bold mb-6">
               {t("02 — NOS VALEURS", "02 — قيمنا")}
             </span>
-            <h2 className="font-syne font-extrabold text-5xl md:text-[48px] text-white leading-[1.1] mb-12">
+            <h2 className="font-syne font-extrabold text-[32px] sm:text-5xl md:text-[48px] text-white leading-[1.1] mb-12">
               {t("Ce Qui Nous Guide.", "ما يوجهنا.")}
             </h2>
 
@@ -466,7 +466,7 @@ export default function AboutPage() {
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center text-center">
-          <h2 className="font-syne font-extrabold text-5xl md:text-[64px] max-w-4xl text-white tracking-[-0.02em] leading-tight mb-8">
+          <h2 className="font-syne font-extrabold text-[32px] sm:text-5xl md:text-[64px] max-w-4xl text-white tracking-[-0.02em] leading-tight mb-8">
             {t("Rejoignez les 500+ clients qui ont fait le choix SEP.", "انضم إلى أكثر من 500 عميل اختاروا SEP.")}
           </h2>
           
