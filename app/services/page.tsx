@@ -6,7 +6,6 @@ import Link from "next/link";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLanguage } from "@/context/LanguageContext";
-import InteractiveSolarBackground from "@/components/InteractiveSolarBackground";
 import dynamic from "next/dynamic";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
@@ -491,7 +490,6 @@ export default function ServicesPage() {
 
       {/* SECTION 6 — COMPARISON TABLE */}
       <section className="relative comparison-section pt-16 pb-32 lg:pt-24 lg:pb-48 px-6 bg-[#0F2035] border-y border-white/5">
-        <InteractiveSolarBackground baseOpacity={0.03} glowOpacity={0.25} />
         <div className="relative z-10 container mx-auto">
           {/* Header */}
           <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">

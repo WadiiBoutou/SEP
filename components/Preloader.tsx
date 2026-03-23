@@ -1,66 +1,79 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 
 export default function Preloader() {
-  const [isVisible, setIsVisible] = useState(false);
+  // Render immediately on first paint to avoid any "page flash" before the loader appears.
+  const [isVisible, setIsVisible] = useState(true);
   const preloaderRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    // Check if user has seen the loader in this session
-    const hasSeenLoader = sessionStorage.getItem("hasSeenLoader");
-    
-    if (!hasSeenLoader) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  }, []);
 
   useEffect(() => {
-    if (isVisible && contentRef.current) {
-      const tl = gsap.timeline({
-        onComplete: () => {
+    // If the user already saw it in this session, hide immediately and skip animations.
+    try {
+      if (sessionStorage.getItem("hasSeenLoader")) {
+        setIsVisible(false);
+        return;
+      }
+    } catch {
+      // If sessionStorage is blocked/unavailable, just run the loader.
+    }
+
+    if (!contentRef.current) return;
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        try {
           sessionStorage.setItem("hasSeenLoader", "true");
-          // Smooth exit
+        } catch {
+          // Ignore
+        }
+        // Smooth exit
+        if (preloaderRef.current) {
           gsap.to(preloaderRef.current, {
             opacity: 0,
             duration: 0.8,
             ease: "power2.inOut",
-            onComplete: () => setIsVisible(false)
+            onComplete: () => setIsVisible(false),
           });
+        } else {
+          setIsVisible(false);
         }
-      });
+      },
+    });
 
-      // Entrance
-      tl.fromTo(contentRef.current, 
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, ease: "power4.out" }
-      );
+    // Entrance
+    tl.fromTo(contentRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power4.out" });
 
-      // Progress bar (2.5 seconds total)
-      if (progressBarRef.current) {
-        tl.to(progressBarRef.current, {
+    // Progress bar (2.5 seconds total)
+    if (progressBarRef.current) {
+      tl.to(
+        progressBarRef.current,
+        {
           width: "100%",
           duration: 2.5,
-          ease: "power1.inOut"
-        }, 0);
-      }
+          ease: "power1.inOut",
+        },
+        0
+      );
+    }
 
-      // Subtle scale pulse
-      tl.to(".preloader-logo", {
+    // Subtle scale pulse
+    tl.to(
+      ".preloader-logo",
+      {
         scale: 1.08,
         duration: 1.25,
         repeat: 1,
         yoyo: true,
-        ease: "sine.inOut"
-      }, 0);
-    }
-  }, [isVisible]);
+        ease: "sine.inOut",
+      },
+      0
+    );
+  }, []);
 
   if (!isVisible) return null;
 
