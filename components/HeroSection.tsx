@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
@@ -9,6 +9,7 @@ import { useLanguage } from "@/context/LanguageContext";
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function HeroSection() {
           src="/images/fallback_home.webp" 
           alt="" 
           fill 
-          className="object-cover opacity-60"
+          className={`object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-60'}`}
           priority
           sizes="100vw"
         />
@@ -63,6 +64,7 @@ export default function HeroSection() {
           loop
           playsInline
           poster="/images/fallback_home.webp"
+          onPlaying={() => setIsVideoLoaded(true)}
           className="w-full h-full object-cover opacity-60 relative z-10"
         >
           <source src="/sunny_sky.mp4" type="video/mp4" />
@@ -87,7 +89,7 @@ export default function HeroSection() {
             </span>
           </div>
 
-          <h1 className="font-syne font-extrabold text-[40px] sm:text-[54px] leading-[0.88] tracking-[-0.04em] md:text-[84px] lg:text-[105px] text-white overflow-hidden mb-10">
+          <h1 className="font-syne font-extrabold text-[40px] sm:text-[54px] leading-[0.88] tracking-[-0.04em] md:text-[76px] lg:text-[95px] text-white overflow-hidden mb-10">
             <span className="hero-line block">{t("L'Énergie", "الطاقة")} <span className="text-brand-glow drop-shadow-[0_0_20px_rgba(255,170,0,0.4)]">{t("SOLAIRE", "الشمسية")}</span></span>
             <span className="hero-line block">{t("Qui Change", "التي تغير")} <span className="text-brand-heat drop-shadow-[0_0_25px_rgba(255,77,0,0.6)]">{t("Tout.", "كل شيء.")}</span></span>
           </h1>
