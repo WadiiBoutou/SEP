@@ -63,7 +63,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-4 font-sans text-sm text-white/70">
               <li>Swalem, Route de Tiznit, Inchaden</li>
               <li>Chtouka Ait Baha, Agadir</li>
-              <li>+212 612-619329</li>
+              <li><span dir="ltr">+212 612-619329</span></li>
               <li>sudextrapower@gmail.com</li>
             </ul>
             <div className="flex items-center gap-4 mt-8">

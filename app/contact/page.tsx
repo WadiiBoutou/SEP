@@ -9,6 +9,14 @@ export default function ContactPage() {
   const containerRef = useRef<HTMLElement>(null);
   const { t, lang } = useLanguage();
 
+  const firstNameRef = useRef<HTMLInputElement>(null);
+  const lastNameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
+  const cityRef = useRef<HTMLInputElement>(null);
+  const serviceRef = useRef<HTMLSelectElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
   const [budget, setBudget] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
@@ -97,10 +105,44 @@ export default function ContactPage() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate network request
+
+    // Collect form data
+    const firstName = firstNameRef.current?.value || "";
+    const lastName = lastNameRef.current?.value || "";
+    const email = emailRef.current?.value || "";
+    const phone = phoneRef.current?.value || "";
+    const city = cityRef.current?.value || "";
+    const service = serviceRef.current?.value || "";
+    const message = messageRef.current?.value || "";
+
+    // Get service label in French
+    const serviceLabels: { [key: string]: string } = {
+      pv: "Installation Solaire PV",
+      pompage: "Pompage Solaire",
+      chauffe: "Chauffe-eau Solaire",
+      maintenance: "Maintenance & SAV",
+      autre: "Autre",
+    };
+
+    const serviceLabel = serviceLabels[service] || service;
+
+    // Build WhatsApp message in French without emojis
+    const whatsappMessage = `Bonjour,\n\nNom: ${firstName} ${lastName}\nEmail: ${email}\nTéléphone: ${phone}\nVille: ${city}\nService: ${serviceLabel}\n\nMessage:\n${message}${budget ? `\n\nBudget: ${budget}` : ""}`;
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+    // Simulate loading
     setTimeout(() => {
       setLoading(false);
       setSuccess(true);
+      // Redirect to WhatsApp after a brief moment
+      setTimeout(() => {
+        window.open(
+          `https://wa.me/212612619329?text=${encodedMessage}`,
+          "_blank"
+        );
+      }, 1000);
     }, 1500);
   };
 
@@ -211,7 +253,7 @@ export default function ContactPage() {
               rel="noreferrer"
               className="info-item block bg-white/[0.03] border border-white/5 rounded-2xl p-6 mt-12 hover:border-brand-orange/30 hover:bg-brand-orange/[0.03] transition-all duration-300 group"
             >
-              <div className="font-sans font-light text-[13px] text-white/50 mb-3">{t("Préférez-vous WhatsApp ?", "هل تفضل واتساب؟")}</div>
+            
               <div className="flex items-center gap-4 mb-2">
                 <svg viewBox="0 0 24 24" width="24" height="24" className="text-[#25D366] drop-shadow-[0_0_8px_rgba(37,211,102,0.4)]">
                   <path fill="currentColor" d="M12.031 0C5.385 0 0 5.383 0 12.028c0 2.126.554 4.2 1.604 6.023L.109 23.518l5.626-1.474a12.007 12.007 0 0 0 6.296 1.765h.004C18.675 23.809 24.062 18.423 24.062 11.78 24.062 5.132 18.681 0 12.031 0zm0 21.808a9.982 9.982 0 0 1-5.088-1.391l-.364-.216-3.778.991.996-3.684-.236-.376A9.957 9.957 0 0 1 2.016 11.78c0-5.522 4.494-10.016 10.018-10.016 5.525 0 10.018 4.496 10.018 10.018 0 5.521-4.493 10.018-10.021 10.026zm5.503-7.518c-.302-.151-1.787-.881-2.064-.982-.276-.101-.478-.151-.678.151-.202.302-.78 1.054-.954 1.255-.176.202-.352.226-.653.075-.302-.15-1.275-.47-2.428-1.501-.896-.803-1.5-1.795-1.676-2.097-.176-.302-.019-.465.132-.616.136-.135.302-.352.453-.527.151-.176.202-.302.302-.502.101-.202.05-.377-.025-.528-.076-.151-.678-1.631-.929-2.234-.244-.588-.492-.508-.678-.517-.176-.008-.377-.008-.578-.008s-.527.075-.804.376c-.276.302-1.054 1.03-1.054 2.511 0 1.482 1.08 2.913 1.23 3.114.151.202 2.123 3.238 5.144 4.542.719.31 1.28.495 1.717.633.722.229 1.38.197 1.898.119.58-.088 1.787-.73 2.038-1.436.252-.705.252-1.309.176-1.436-.075-.126-.276-.202-.578-.353z" />
@@ -238,24 +280,25 @@ export default function ContactPage() {
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-6 mb-2">
-                  <input type="text" placeholder={t("Prénom *", "الاسم الأول *")} required className={`${inputClass} md:w-1/2`} />
-                  <input type="text" placeholder={t("Nom *", "الاسم العائلي *")} required className={`${inputClass} md:w-1/2`} />
+                  <input ref={firstNameRef} type="text" placeholder={t("Prénom *", "الاسم الأول *")} required className={`${inputClass} md:w-1/2`} />
+                  <input ref={lastNameRef} type="text" placeholder={t("Nom *", "الاسم العائلي *")} required className={`${inputClass} md:w-1/2`} />
                 </div>
 
                 <div className="mb-2">
-                  <input type="email" placeholder={t("Email *", "البريد الإلكتروني *")} required className={inputClass} />
+                  <input ref={emailRef} type="email" placeholder={t("Email *", "البريد الإلكتروني *")} required className={inputClass} />
                 </div>
 
                 <div className="mb-2">
-                  <input type="tel" placeholder={t("Téléphone", "الهاتف")} className={inputClass} />
+                  <input ref={phoneRef} type="tel" placeholder={t("Téléphone", "الهاتف")} className={inputClass} />
                 </div>
 
                 <div className="mb-2">
-                  <input type="text" placeholder={t("Ville / Région", "المدينة / المنطقة")} className={inputClass} />
+                  <input ref={cityRef} type="text" placeholder={t("Ville / Région", "المدينة / المنطقة")} className={inputClass} />
                 </div>
 
                 <div className="mb-8 relative">
                   <select 
+                    ref={serviceRef}
                     required 
                     className={`${inputClass} cursor-pointer`}
                     defaultValue=""
@@ -275,6 +318,7 @@ export default function ContactPage() {
 
                 <div className="mb-8">
                   <textarea 
+                    ref={messageRef}
                     rows={5} 
                     placeholder={t("Votre Message *", "رسالتك *")} 
                     required 
