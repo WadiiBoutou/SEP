@@ -83,15 +83,9 @@ export default function HeroSection() {
 
       <div className="container mx-auto px-6 lg:px-12 flex-1 flex flex-col justify-center relative z-10 pt-16">
         <div className="max-w-4xl">
-          <div className="overflow-hidden mb-5">
-            <span className="hero-line block font-sans text-sky-blue text-[9px] sm:text-[10.5px] uppercase tracking-[0.35em] font-semibold drop-shadow-[0_0_8px_rgba(113,175,215,0.4)]">
-              {t("// Énergie Solaire · Maroc", "// طاقة شمسية · المغرب")}
-            </span>
-          </div>
-
-          <h1 className="font-syne font-extrabold text-[40px] sm:text-[54px] leading-[0.88] tracking-[-0.04em] md:text-[76px] lg:text-[95px] text-white overflow-hidden mb-10">
-            <span className="hero-line block">{t("L'Énergie", "الطاقة")} <span className="text-brand-glow drop-shadow-[0_0_20px_rgba(255,170,0,0.4)]">{t("SOLAIRE", "الشمسية")}</span></span>
-            <span className="hero-line block">{t("Qui Change", "التي تغير")} <span className="text-brand-heat drop-shadow-[0_0_25px_rgba(255,77,0,0.6)]">{t("Tout.", "كل شيء.")}</span></span>
+          <h1 className="font-syne font-semibold text-[40px] sm:text-[54px] leading-[0.95] tracking-[-0.04em] md:text-[76px] lg:text-[95px] text-white mb-10">
+            <span className="hero-line block pb-[0.08em]">{t("L'Énergie", "الطاقة")} <span className="text-brand-heat drop-shadow-[0_0_25px_rgba(255,77,0,0.6)]">{t("SOLAIRE", "الشمسية")}</span></span>
+            <span className="hero-line block pb-[0.08em]">{t("Qui Change", "التي تغير")} <span className="text-brand-glow drop-shadow-[0_0_20px_rgba(255,170,0,0.4)]">{t("Tout.", "كل شيء.")}</span></span>
           </h1>
 
           <div className="overflow-hidden mb-10">

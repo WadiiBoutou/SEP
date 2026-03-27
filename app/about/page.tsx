@@ -249,16 +249,10 @@ export default function AboutPage() {
 
         <div className="container mx-auto px-6 lg:px-12 relative z-30">
           <div className="max-w-4xl pt-20 lg:pt-0 lg:-ml-8">
-            <div className="overflow-hidden mb-6 py-1">
-              <span className="hero-line block font-sans text-brand-gold text-[10px] sm:text-[12px] font-bold uppercase tracking-[0.3em] drop-shadow-md">
-                {t("02 — À PROPOS", "02 — من نحن")}
-              </span>
-            </div>
-
-            <h1 className="font-syne font-extrabold text-[36px] sm:text-[44px] md:text-[58px] lg:text-[clamp(48px,5.5vw,78px)] leading-[1.1] tracking-[-0.04em] text-white mb-10 drop-shadow-2xl">
-              <div className="overflow-hidden py-1 pr-4"><span className="hero-line block">{t("Construire", "بناء")}</span></div>
-              <div className="overflow-hidden py-1 pr-4"><span className="hero-line block">{t("l'Avenir", "المستقبل")}</span></div>
-              <div className="overflow-hidden py-1 pr-4"><span className="hero-line block text-brand-orange drop-shadow-[0_0_15px_rgba(255,123,0,0.3)]">{t("Énergétique.", "الطاقي.")}</span></div>
+            <h1 className="font-syne font-semibold text-[40px] sm:text-[54px] leading-[0.95] tracking-[-0.04em] md:text-[76px] lg:text-[95px] text-white mb-10">
+              <div className="overflow-hidden py-1 pr-4"><span className="hero-line block pb-[0.08em]">{t("Construire", "بناء")}</span></div>
+              <div className="overflow-hidden py-1 pr-4"><span className="hero-line block pb-[0.08em]">{t("l'Avenir", "المستقبل")}</span></div>
+              <div className="overflow-hidden py-1 pr-4"><span className="hero-line block pb-[0.08em] text-brand-orange drop-shadow-[0_0_15px_rgba(255,123,0,0.3)]">{t("Énergétique.", "الطاقي.")}</span></div>
             </h1>
 
             <div className="overflow-hidden mb-12">

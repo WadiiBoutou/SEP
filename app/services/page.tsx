@@ -182,17 +182,11 @@ export default function ServicesPage() {
         />
 
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl">
-          <div className="overflow-hidden mb-8">
-            <span className="hero-text-line block text-sky-blue text-[11px] font-semibold uppercase tracking-[0.25em]">
-              {t("03 — NOS SERVICES", "03 — خدماتنا")}
-            </span>
-          </div>
-
-          <h1 className="font-syne font-extrabold text-[42px] sm:text-[56px] md:text-[70px] lg:text-[clamp(65px,7.5vw,110px)] leading-[0.85] tracking-[-0.05em] text-white flex flex-col items-center mb-10 drop-shadow-[0_15px_40px_rgba(0,0,0,0.85)]">
-            <div className="overflow-hidden"><span className="hero-text-line block">{t("Des Solutions.", "حلول.")}</span></div>
-            <div className="overflow-hidden"><span className="hero-text-line block">{t("Pas des", "وليست")}</span></div>
+          <h1 className="font-syne font-semibold text-[40px] sm:text-[54px] leading-[0.95] tracking-[-0.04em] md:text-[76px] lg:text-[95px] text-white flex flex-col items-center mb-10">
+            <div className="overflow-hidden"><span className="hero-text-line block pb-[0.08em]">{t("Des Solutions.", "حلول.")}</span></div>
+            <div className="overflow-hidden"><span className="hero-text-line block pb-[0.08em]">{t("Pas des", "وليست")}</span></div>
             <div className="overflow-hidden">
-              <span className="hero-text-line block text-brand-gold border-b-2 border-brand-gold inline-block pb-1 typing-target">
+              <span className="hero-text-line block pb-[0.08em] text-brand-gold border-b-2 border-brand-gold inline-block typing-target">
                 {t("Promesses.", "وعود.")}
               </span>
             </div>

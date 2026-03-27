@@ -159,15 +159,9 @@ export default function ContactPage() {
       {/* SECTION 1 — PAGE HERO */}
       <section className="relative min-h-[60vh] flex flex-col justify-center items-center px-6 pt-32 pb-20">
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-4xl mx-auto">
-          <div className="overflow-hidden mb-6">
-            <span className="hero-line-anim block text-brand-orange text-[12px] font-bold uppercase tracking-[0.3em] drop-shadow-[0_0_8px_rgba(255,123,0,0.4)]">
-              {t("// 04 — CONTACT", "// 04 — اتصل بنا")}
-            </span>
-          </div>
-
-          <h1 className="font-syne font-extrabold text-[48px] md:text-[80px] lg:text-[110px] leading-[0.9] tracking-[-0.04em] text-white flex flex-col items-center mb-10">
-            <div className="overflow-hidden"><span className="hero-line-anim block">{t("Parlons de", "لنتحدث عن")}</span></div>
-            <div className="overflow-hidden"><span className="hero-line-anim block text-brand-orange drop-shadow-[0_0_15px_rgba(255,123,0,0.3)]">{t("Votre Projet.", "مشروعك.")}</span></div>
+          <h1 className="font-syne font-semibold text-[40px] sm:text-[54px] leading-[0.95] tracking-[-0.04em] md:text-[76px] lg:text-[95px] text-white flex flex-col items-center mb-10">
+            <div className="overflow-hidden"><span className="hero-line-anim block pb-[0.08em]">{t("Parlons de", "لنتحدث عن")}</span></div>
+            <div className="overflow-hidden"><span className="hero-line-anim block pb-[0.08em] text-brand-orange drop-shadow-[0_0_15px_rgba(255,123,0,0.3)]">{t("Votre Projet.", "مشروعك.")}</span></div>
           </h1>
 
           <div className="overflow-hidden max-w-[540px]">
