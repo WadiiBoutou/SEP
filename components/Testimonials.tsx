@@ -48,7 +48,7 @@ export default function Testimonials() {
             { value: "10 ans", label: t("Garantie installation", "ضمان التركيب") },
             { value: "48h", label: t("Délai d'intervention", "وقت التدخل") },
           ].map((stat, i) => (
-            <div key={i} className="bg-[#0F2035] px-8 py-8 flex flex-col gap-1">
+            <div key={i} className="bg-off-dark px-8 py-8 flex flex-col gap-1">
               <span className="font-syne font-extrabold text-[36px] md:text-[44px] text-brand-orange leading-none">{stat.value}</span>
               <span className="font-sans text-[11px] uppercase tracking-[0.15em] text-white/50 font-bold mt-2">{stat.label}</span>
             </div>
@@ -68,7 +68,7 @@ export default function Testimonials() {
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="group bg-[#0F2035] border border-white/[0.06] hover:border-brand-orange/25 p-10 lg:p-12 relative flex flex-col transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,123,0,0.05)] hover:bg-[#0F2035]/80"
+              className="group bg-off-dark border border-white/[0.06] hover:border-brand-orange/25 p-10 lg:p-12 relative flex flex-col transition-all duration-300 hover:bg-[rgb(var(--rgb-off-dark)/0.8)]"
             >
               {/* Star Rating */}
               <div className="flex gap-1 mb-6">

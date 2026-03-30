@@ -19,7 +19,7 @@ export default function CtaBanner() {
           sizes="100vw"
         />
         {/* 85% Dark Overlay */}
-        <div className="absolute inset-0 bg-[#0C1A27]/85 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-[rgb(var(--rgb-dark-bg)/0.85)] mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/50 to-transparent" />
         {/* Heat overlay spot */}
         <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-orange/40 rounded-full blur-[180px] pointer-events-none mix-blend-screen" />

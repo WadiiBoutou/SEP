@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
   ssr: false,
-  loading: () => <div className="absolute inset-0 bg-[#0C1A27]" />,
+  loading: () => <div className="absolute inset-0 bg-dark-bg" />,
 });
 
 export default function ServicesPage() {
@@ -146,8 +146,8 @@ export default function ServicesPage() {
       <section className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20 pb-20 overflow-hidden">
         {/* Video Background/Overlay Layer */}
         {/* Spline 3D Scene Background — Adjust bottom opacity here (/85) */}
-        <div className="absolute inset-0 z-0 overflow-hidden bg-[#0C1A27]">
-          <div className="absolute inset-0 opacity-100 z-10 pointer-events-none bg-gradient-to-b from-[#0C1A27]/20 via-transparent to-[#0C1A27]/90" />
+        <div className="absolute inset-0 z-0 overflow-hidden bg-dark-bg">
+          <div className="absolute inset-0 opacity-100 z-10 pointer-events-none bg-gradient-to-b from-[rgb(var(--rgb-dark-bg)/0.2)] via-transparent to-[rgb(var(--rgb-dark-bg)/0.9)]" />
           <Spline
             scene="https://prod.spline.design/4sL7FIpm-FDQzufs/scene.splinecode"
             style={{ width: '100%', height: 'calc(100% + 100px)', position: 'absolute', top: '-50px', left: 0 }}
@@ -170,7 +170,7 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-brand-orange/5 mix-blend-color z-1" />
 
           {/* Detailed Dark Overlay — Adjust bottom opacity here (/85) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0C1A27]/30 via-transparent to-[#0C1A27]/85 z-2" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--rgb-dark-bg)/0.3)] via-transparent to-[rgb(var(--rgb-dark-bg)/0.85)] z-2" />
         </div>
 
         {/* Grain texture overlay */}
@@ -277,7 +277,12 @@ export default function ServicesPage() {
           <div className="service-image w-full lg:w-[45%] h-[50vh] lg:h-auto min-h-[500px] relative">
             <div
               className="absolute inset-y-0 left-0 w-[40%] z-10 pointer-events-none hidden lg:block"
-              style={{ background: lang === 'ar' ? 'linear-gradient(to right, #0C1A27 0%, transparent 100%)' : 'linear-gradient(to right, #0C1A27 0%, transparent 100%)' }}
+              style={{
+                background:
+                  lang === 'ar'
+                    ? 'linear-gradient(to right, rgb(var(--rgb-dark-bg)) 0%, transparent 100%)'
+                    : 'linear-gradient(to right, rgb(var(--rgb-dark-bg)) 0%, transparent 100%)'
+              }}
             />
             {/* For precise bleed fading on LTR (left edge of image fades into background #0C1A27) */}
             <div className="absolute inset-y-0 left-0 w-[25%] lg:bg-gradient-to-r from-dark-bg to-transparent z-10 pointer-events-none" />
@@ -292,7 +297,7 @@ export default function ServicesPage() {
             />
 
             {/* Floating Badge (Bottom-Left overlap) */}
-            <div className="absolute -bottom-6 left-6 lg:-left-12 bg-[#0F2035] border border-white/10 px-4 py-3 z-20 shadow-2xl rounded-none">
+            <div className="absolute -bottom-6 left-6 lg:-left-12 bg-off-dark border border-white/10 px-4 py-3 z-20 shadow-2xl rounded-none">
               <span className="font-sans font-medium text-[12px] text-brand-gold whitespace-nowrap">
                 ⚡ {t("Résidentiel · Commercial · Industriel", "سكني · تجاري · صناعي")}
               </span>
@@ -483,7 +488,7 @@ export default function ServicesPage() {
       </section>
 
       {/* SECTION 6 — COMPARISON TABLE */}
-      <section className="relative comparison-section pt-16 pb-32 lg:pt-24 lg:pb-48 px-6 bg-[#0F2035] border-y border-white/5">
+      <section className="relative comparison-section pt-16 pb-32 lg:pt-24 lg:pb-48 px-6 bg-off-dark border-y border-white/5">
         <div className="relative z-10 container mx-auto">
           {/* Header */}
           <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
@@ -515,7 +520,7 @@ export default function ServicesPage() {
             <div className="min-w-[900px]">
 
               {/* Table Header Row */}
-              <div className="grid grid-cols-5 bg-[#245594] border border-white/[0.07]">
+              <div className="grid grid-cols-5 bg-primary-blue border border-white/[0.07]">
                 <div className="col-span-1 p-6 text-left border-r border-white/[0.07]">
                   <span className="font-syne font-semibold text-[13px] text-white uppercase tracking-wider">{t("Critère", "المعيار")}</span>
                 </div>
@@ -573,7 +578,7 @@ export default function ServicesPage() {
               ].map((row, index) => (
                 <div
                   key={index}
-                  className={`table-row-animate flex grid grid-cols-5 border-b border-x border-white/[0.07] ${index % 2 === 0 ? 'bg-white/[0.02]' : 'bg-[#0F2035]'}`}
+                  className={`table-row-animate flex grid grid-cols-5 border-b border-x border-white/[0.07] ${index % 2 === 0 ? 'bg-white/[0.02]' : 'bg-off-dark'}`}
                 >
                   <div className="col-span-1 p-6 flex items-center justify-start border-r border-white/[0.07]">
                     <span className="font-syne font-semibold text-[14px] text-white">{row.critere}</span>
@@ -594,7 +599,7 @@ export default function ServicesPage() {
               ))}
 
               {/* Action Row */}
-              <div className="grid grid-cols-5 border-b border-x border-white/[0.07] bg-[#0F2035]">
+              <div className="grid grid-cols-5 border-b border-x border-white/[0.07] bg-off-dark">
                 <div className="col-span-1 p-4 border-r border-white/[0.07]" />
                 <div className="col-span-1 p-5 flex items-center justify-center text-center border-r border-white/[0.07]">
                   <Link href="/contact" className="font-sans font-bold text-[13px] uppercase tracking-wider text-brand-gold hover:text-white transition-colors">{t("Devis →", "سعر ←")}</Link>
@@ -626,7 +631,7 @@ export default function ServicesPage() {
             sizes="100vw"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-[#0C1A27]/85 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-[rgb(var(--rgb-dark-bg)/0.85)] mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/50 to-transparent" />
         </div>
 

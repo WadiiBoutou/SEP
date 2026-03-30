@@ -9,23 +9,20 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-[#080E18] border-t border-white/5 pt-24 pb-8">
+    <footer className="bg-ink border-t border-white/5 pt-24 pb-8">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="relative h-[48px] w-[48px]">
+            <Link href="/" className="flex items-center mb-6">
+              <div className="relative h-[68px] w-[68px]">
                 <Image
                   src="/LOGO2.webp"
                   alt="Sud Extra Power Logo"
                   fill
                   className="object-contain"
-                  sizes="48px"
+                  sizes="68px"
                 />
               </div>
-              <span className="font-syne font-bold text-lg tracking-tight text-white">
-                Sud Extra Power
-              </span>
             </Link>
             <p className="text-white/65 font-sans text-sm pr-4">
               {t("L'énergie propre, livrée au Sud.", "الطاقة النظيفة، نوصلها للجنوب.")}
@@ -70,7 +67,7 @@ export default function Footer() {
               <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-dark-bg transition-all">
                 <Facebook size={18} />
               </a>
-              <a href="https://wa.me/212612619329?text=Bonjour%20l'equipe%20SEP%2C%20je%20souhaiterais%20obtenir%20des%20informations%20sur%20vos%20solutions%20d'energie%20solaire." target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#25D366] transition-all">
+              <a href="https://wa.me/212612619329?text=Bonjour%20l'equipe%20SEP%2C%20je%20souhaiterais%20obtenir%20des%20informations%20sur%20vos%20solutions%20d'energie%20solaire." target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-whatsapp transition-all">
                 <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
               </a>
               <a href="mailto:sudextrapower@gmail.com" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand-gold hover:text-dark-bg transition-all">

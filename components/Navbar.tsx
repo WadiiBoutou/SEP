@@ -31,12 +31,12 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[#0C1A27]/90 backdrop-blur-lg py-4 border-transparent shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+            ? "bg-[rgb(var(--rgb-dark-bg)/0.9)] backdrop-blur-lg py-4 border-transparent shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
             : "bg-transparent py-6 border-transparent"
         }`}
       >
         <div className="container mx-auto px-6 lg:px-12 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-4 z-50">
+          <Link href="/" className="flex items-center z-50">
             <div className="relative h-[60px] w-[60px]">
               <Image
                 src="/LOGO2.webp"
@@ -47,9 +47,6 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="font-syne font-bold text-xl tracking-tight text-white hidden sm:block">
-              Sud Extra Power
-            </span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-10">
@@ -109,7 +106,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-[#0C1A27] z-40 transition-transform duration-500 ease-in-out lg:hidden flex flex-col justify-center items-center ${
+        className={`fixed inset-0 bg-dark-bg z-40 transition-transform duration-500 ease-in-out lg:hidden flex flex-col justify-center items-center ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

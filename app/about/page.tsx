@@ -65,7 +65,8 @@ function DualImageSection({ t }: { t: any }) {
             key={item.id}
             onMouseEnter={() => handleEnter(i)}
             style={{
-              flex: isActive ? '1 0 100%' : isInactive ? '0 0 0.001%' : '1 0 50%',
+              // Keep a thin "tab" visible for the inactive panel
+              flex: isActive ? '1 0 92%' : isInactive ? '0 0 8%' : '1 0 50%',
               transition: 'flex 0.8s cubic-bezier(0.77, 0, 0.175, 1)',
               position: 'relative',
               overflow: 'hidden',
@@ -79,11 +80,13 @@ function DualImageSection({ t }: { t: any }) {
                     filter: isActive ? 'blur(0px) brightness(1)' : 'blur(12px) brightness(0.4)',
                 }}
             >
-                <img
-                    src={item.src}
-                    alt={item.label}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
+                <Image
+                  src={item.src}
+                  alt={item.label}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  priority={i === 0}
                 />
             </div>
 
@@ -234,8 +237,8 @@ export default function AboutPage() {
             sizes="100vw"
           />
           {/* Cinematic Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0C1A27] via-[#0C1A27]/60 to-transparent z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0C1A27] via-transparent to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark-bg via-[rgb(var(--rgb-dark-bg)/0.6)] to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10" />
           <div className="absolute inset-0 bg-black/20 mix-blend-overlay z-10" />
         </div>
 
@@ -248,7 +251,7 @@ export default function AboutPage() {
         />
 
         <div className="container mx-auto px-6 lg:px-12 relative z-30">
-          <div className="max-w-4xl pt-20 lg:pt-0 lg:-ml-8">
+          <div className="max-w-4xl pt-20 lg:pt-0">
             <h1 className="font-syne font-semibold text-[40px] sm:text-[54px] leading-[0.95] tracking-[-0.04em] md:text-[76px] lg:text-[95px] text-white mb-10">
               <div className="overflow-hidden py-1 pr-4"><span className="hero-line block pb-[0.08em]">{t("Construire", "بناء")}</span></div>
               <div className="overflow-hidden py-1 pr-4"><span className="hero-line block pb-[0.08em]">{t("l'Avenir", "المستقبل")}</span></div>
@@ -325,7 +328,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center overflow-hidden">
           
-          <div className="team-image-container relative w-full aspect-[3/4] border border-white/5 bg-[#0F2035] p-0 rounded-none overflow-hidden">
+          <div className="team-image-container relative w-full aspect-[3/4] border border-white/5 bg-off-dark p-0 rounded-none overflow-hidden">
             <Image
               src="/images/workers.webp"
               alt="Construction workers installing solar"
@@ -382,7 +385,7 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 4 — BY THE NUMBERS */}
-      <section className="numbers-section relative py-32 lg:py-48 bg-[#0F2035] overflow-hidden border-y border-white/5">
+      <section className="numbers-section relative py-32 lg:py-48 bg-off-dark overflow-hidden border-y border-white/5">
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none mix-blend-overlay opacity-20">
           <span className="font-syne font-extrabold text-[120px] sm:text-[200px] lg:text-[260px] text-white/[0.05] leading-none select-none tracking-tighter">
             SEP
@@ -455,7 +458,7 @@ export default function AboutPage() {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-[#0C1A27]/85 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-[rgb(var(--rgb-dark-bg)/0.85)] mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/50 to-transparent" />
         </div>
 

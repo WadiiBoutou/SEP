@@ -81,7 +81,7 @@ export default function ServicesGrid() {
           {services.map((service) => (
             <div
               key={service.id}
-              className="group relative flex flex-col h-full bg-[#111] border border-white/5 transition-all duration-500 hover:border-brand-orange/30 overflow-hidden"
+              className="group relative flex flex-col h-full bg-panel border border-white/5 transition-all duration-500 hover:border-brand-orange/30 overflow-hidden"
             >
               {/* Image Container */}
               <div className="relative aspect-[4/3] overflow-hidden">

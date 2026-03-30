@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 
 export default function Preloader() {
@@ -80,16 +81,21 @@ export default function Preloader() {
   return (
     <div 
       ref={preloaderRef}
-      className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#0C1A27]"
+      className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-dark-bg"
     >
       <div ref={contentRef} className="flex flex-col items-center max-w-[280px] w-full px-8 relative z-10">
         {/* Logo Section */}
         <div className="preloader-logo relative mb-14">
-          <img 
-            src="/LOGO2.webp" 
-            alt="SEP Logo" 
-            className="w-28 h-28 md:w-36 md:h-36 object-contain relative z-10"
-          />
+          <div className="relative w-28 h-28 md:w-36 md:h-36">
+            <Image
+              src="/LOGO2.webp"
+              alt="SEP Logo"
+              fill
+              priority
+              sizes="(max-width: 768px) 112px, 144px"
+              className="object-contain relative z-10"
+            />
+          </div>
           {/* Subtle glow behind logo */}
           <div className="absolute inset-0 bg-brand-orange/15 blur-3xl -z-10 rounded-full scale-150" />
         </div>

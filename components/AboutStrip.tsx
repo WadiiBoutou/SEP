@@ -73,7 +73,7 @@ export default function AboutStrip() {
         {/* Right Images */}
         <div className="relative h-[700px] w-full mt-16 lg:mt-0">
           {/* Main Large Image */}
-          <div className="about-image-wrapper absolute top-0 right-0 w-[75%] aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.8)] z-0 transform rotate-2">
+          <div className="about-image-wrapper absolute top-0 right-0 w-[75%] aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 z-0 transform rotate-2">
             <Image
               src="/images/solar_field.webp"
               alt="Solar Field"
@@ -85,7 +85,7 @@ export default function AboutStrip() {
           </div>
           
           {/* Secondary Smaller Image */}
-          <div className="about-image-wrapper absolute -bottom-10 left-0 w-[55%] aspect-[5/6] overflow-hidden rounded-2xl border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.9)] z-10 translate-x-4 transform rotate-3">
+          <div className="about-image-wrapper absolute -bottom-10 left-0 w-[55%] aspect-[5/6] overflow-hidden rounded-2xl border border-white/10 z-10 translate-x-4 transform rotate-3">
             <Image
               src="/images/modern_solar_home.webp"
               alt="Modern Solar Home"
@@ -97,7 +97,7 @@ export default function AboutStrip() {
           </div>
 
           {/* Floating Badge */}
-          <div className="about-content absolute -bottom-4 right-10 bg-[#111] backdrop-blur-md border border-white/10 px-8 py-6 z-20 flex flex-col gap-2 rounded-xl shadow-2xl shadow-brand-orange/20 transform rotate-1">
+          <div className="about-content absolute -bottom-4 right-10 bg-panel backdrop-blur-md border border-white/10 px-8 py-6 z-20 flex flex-col gap-2 rounded-xl transform rotate-1">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
               <span className="font-sans text-[10.5px] uppercase tracking-[0.2em] text-sky-blue font-bold">
