@@ -14,7 +14,7 @@ const generateSolarPattern = () => {
   const cellW = (w - margin * 2 - (cellsX - 1) * gap) / cellsX;
   const cellH = (h - margin * 2 - (cellsY - 1) * gap) / cellsY;
 
-  const variants = ['#0e1b34', '#0c1830', '#101e38'];
+  const variants = ['var(--color-solar-cell-1)', 'var(--color-solar-cell-2)', 'var(--color-solar-cell-3)'];
   let cellsHTML = '';
 
   for (let r = 0; r < cellsY; r++) {
@@ -27,14 +27,14 @@ const generateSolarPattern = () => {
 
       [0.25, 0.5, 0.75].forEach(pct => {
         const bx = cx + cellW * pct;
-        cellsHTML += `<line x1="${bx}" y1="${cy}" x2="${bx}" y2="${cy + cellH}" stroke="#5a7090" stroke-width="2.2" opacity="0.72"/>`;
+        cellsHTML += `<line x1="${bx}" y1="${cy}" x2="${bx}" y2="${cy + cellH}" stroke="var(--color-solar-grid)" stroke-width="2.2" opacity="0.72"/>`;
       });
     }
   }
 
   const svgStr = `
     <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
-      <rect width="400" height="300" fill="#aebccc"/>
+      <rect width="400" height="300" fill="var(--color-solar-panel)"/>
       ${cellsHTML}
     </svg>
   `.replace(/\s+/g, ' ').replace(/> </g, '><').trim();

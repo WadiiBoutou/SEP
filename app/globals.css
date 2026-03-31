@@ -17,6 +17,15 @@
   --color-panel: #111111;        /* cards */
   --color-whatsapp: #25D366;
   --color-whatsapp-dark: #128C7E;
+  --color-highlight: #fbbf24;    /* amber/gold highlights */
+  --color-scroll-bg: #1a1a1a;
+
+  /* Solar-specific (Decorative) */
+  --color-solar-grid: #5a7090;
+  --color-solar-panel: #aebccc;
+  --color-solar-cell-1: #0e1b34;
+  --color-solar-cell-2: #0c1830;
+  --color-solar-cell-3: #101e38;
 
   /* RGB helpers (for opacity + shadows) */
   --rgb-brand-orange: 255 123 0;

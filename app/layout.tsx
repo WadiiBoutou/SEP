@@ -1,5 +1,4 @@
-import type { Metadata } from "next";
-import type { Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import { Syne, DM_Sans, Cairo } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -32,62 +31,82 @@ const cairo = Cairo({
   weight: ["300", "400", "500", "700", "800"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-const metadataBase = new URL(siteUrl);
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sep-solar.ma"; // Updated to a placeholder prod URL if not set
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "rgb(12 26 39)",
+  themeColor: "#0C1A27",
 };
 
 export const metadata: Metadata = {
-  metadataBase,
-  title: "SEP — Sud Extra Power",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "SEP | Solutions Solaires & Hydrauliques Premium",
+    template: "%s | SEP",
+  },
   description:
-    "Solutions solaires & hydrauliques à Agadir, Maroc. Installation photovoltaïque, pompage solaire, chauffe-eau solaire et maintenance.",
+    "Expertise leader en solutions solaires et hydrauliques au Maroc. Installation photovoltaïque, pompage solaire et maintenance premium pour un avenir durable.",
   keywords: [
     "Sud Extra Power",
-    "SEP",
-    "Énergie solaire",
-    "Photovoltaïque",
+    "SEP Solar",
+    "Énergie solaire Maroc",
+    "Photovoltaïque Agadir",
     "Pompage solaire",
     "Chauffe-eau solaire",
-    "Maintenance solaire",
-    "Agadir",
-    "Maroc",
+    "Maintenance panneaux solaires",
+    "Installation solaire Agadir",
+    "Souss-Massa Énergie",
+    "Énergie renouvelable Maroc",
   ],
+  authors: [{ name: "Sud Extra Power" }],
+  creator: "Sud Extra Power",
+  publisher: "Sud Extra Power",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: [
-      { url: "/LOGO2.webp?v=3", type: "image/webp" },
-      { url: "/LOGO2.webp?v=3", sizes: "32x32", type: "image/webp" },
+      { url: "/favicon.ico" },
+      { url: "/LOGO2.webp?v=4", type: "image/webp" },
     ],
-    apple: "/LOGO2.webp?v=3",
-    shortcut: "/LOGO2.webp?v=3",
+    apple: "/LOGO2.webp?v=4",
   },
   openGraph: {
     type: "website",
-    url: "/",
-    title: "SEP — Sud Extra Power",
+    url: siteUrl,
+    title: "SEP | Solutions Solaires & Hydrauliques",
     description:
-      "Solutions solaires & hydrauliques à Agadir, Maroc. Installation photovoltaïque, pompage solaire, chauffe-eau solaire et maintenance.",
-    siteName: "SEP — Sud Extra Power",
+      "Expert en solutions solaires et hydrauliques au Maroc. Installation photovoltaïque, pompage solaire et maintenance premium.",
+    siteName: "Sud Extra Power",
     locale: "fr_FR",
     images: [
       {
-        url: "/LOGO2.webp?v=3",
-        width: 512,
-        height: 512,
-        alt: "SEP — Sud Extra Power",
+        url: "/LOGO2.webp?v=4",
+        width: 1200,
+        height: 630,
+        alt: "Sud Extra Power — Solutions Solaires",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SEP — Sud Extra Power",
-    description:
-      "Solutions solaires & hydrauliques à Agadir, Maroc. Installation photovoltaïque, pompage solaire, chauffe-eau solaire et maintenance.",
-    images: ["/LOGO2.webp?v=3"],
+    title: "SEP | Solutions Solaires & Hydrauliques",
+    description: "Solutions solaires & hydrauliques premium à Agadir, Maroc.",
+    images: ["/LOGO2.webp?v=4"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -101,14 +120,34 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     name: "SEP — Sud Extra Power",
     url: siteUrl,
-    logo: `${siteUrl}/LOGO2.webp?v=3`,
-    image: `${siteUrl}/LOGO2.webp?v=3`,
+    logo: `${siteUrl}/LOGO2.webp?v=4`,
+    image: `${siteUrl}/LOGO2.webp?v=4`,
     telephone: "+212612619329",
+    description: "Expert en solutions solaires et hydrauliques à Agadir, Maroc.",
     address: {
       "@type": "PostalAddress",
       addressCountry: "MA",
       addressLocality: "Agadir",
       streetAddress: "Swalem, Route de Tiznit, Inchaden, Chtouka Ait Baha",
+      postalCode: "80000",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "30.4278", // Example: Agadir coordinates
+      longitude: "-9.5981",
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      opens: "08:30",
+      closes: "18:30"
     },
     areaServed: [
       { "@type": "AdministrativeArea", name: "Souss-Massa" },
@@ -118,8 +157,13 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="fr" dir="ltr" className={`${syne.variable} ${dmSans.variable} ${cairo.variable}`}>
-      <body className="font-sans antialiased overflow-x-hidden">
+    <html 
+      lang="fr" 
+      dir="ltr" 
+      className={`scroll-smooth ${syne.variable} ${dmSans.variable} ${cairo.variable}`}
+      data-scroll-behavior="smooth"
+    >
+      <body className="font-sans antialiased overflow-x-hidden bg-dark-bg text-white">
         <Script
           id="ld-json-localbusiness"
           type="application/ld+json"
@@ -130,7 +174,7 @@ export default function RootLayout({
         <LanguageProvider>
           <SmoothScroll>
             <Navbar />
-            <main>{children}</main>
+            <main className="relative">{children}</main>
             <Footer />
             <WhatsAppButton />
             <LenisScrollBar />
@@ -140,3 +184,4 @@ export default function RootLayout({
     </html>
   );
 }
+
