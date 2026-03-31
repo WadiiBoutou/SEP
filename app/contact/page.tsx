@@ -11,10 +11,7 @@ export default function ContactPage() {
 
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
-  const cityRef = useRef<HTMLInputElement>(null);
-  const serviceRef = useRef<HTMLSelectElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
   const [budget, setBudget] = useState<string>("");
@@ -109,25 +106,11 @@ export default function ContactPage() {
     // Collect form data
     const firstName = firstNameRef.current?.value || "";
     const lastName = lastNameRef.current?.value || "";
-    const email = emailRef.current?.value || "";
     const phone = phoneRef.current?.value || "";
-    const city = cityRef.current?.value || "";
-    const service = serviceRef.current?.value || "";
     const message = messageRef.current?.value || "";
 
-    // Get service label in French
-    const serviceLabels: { [key: string]: string } = {
-      pv: "Installation Solaire PV",
-      pompage: "Pompage Solaire",
-      chauffe: "Chauffe-eau Solaire",
-      maintenance: "Maintenance & SAV",
-      autre: "Autre",
-    };
-
-    const serviceLabel = serviceLabels[service] || service;
-
     // Build WhatsApp message in French without emojis
-    const whatsappMessage = `Bonjour,\n\nNom: ${firstName} ${lastName}\nEmail: ${email}\nTéléphone: ${phone}\nVille: ${city}\nService: ${serviceLabel}\n\nMessage:\n${message}${budget ? `\n\nBudget: ${budget}` : ""}`;
+    const whatsappMessage = `Bonjour,\n\nNom: ${firstName} ${lastName}\nTéléphone: ${phone}\n\nMessage:\n${message}${budget ? `\n\nBudget: ${budget}` : ""}`;
 
     // Encode message for URL
     const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -157,7 +140,19 @@ export default function ContactPage() {
     <article ref={containerRef} className="bg-dark-bg min-h-screen pt-32 lg:pt-0 overflow-hidden font-sans">
       
       {/* SECTION 1 — PAGE HERO */}
-      <section className="relative min-h-[60vh] flex flex-col justify-center items-center px-6 pt-32 pb-20">
+      <section className="relative min-h-[75vh] flex flex-col justify-center items-center px-6 pt-32 pb-20 overflow-hidden">
+        {/* Premium Background Layer */}
+        <div 
+          className="absolute inset-0 z-0 scale-110"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, rgba(16, 16, 16, 0.9), rgba(16, 16, 16, 0.3), rgba(16, 16, 16, 0.95)), url('https://media.licdn.com/dms/image/v2/D4E12AQGKsclxmbpr1A/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1693237612736?e=2147483647&v=beta&t=n7chm-oXzz41LacDtrVRejAJwwkzzt8GE7yAc8COzCU')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 75%',
+            backgroundAttachment: 'scroll',
+            filter: 'brightness(0.7) contrast(1.1)',
+          }}
+        />
+        
         <div className="relative z-10 flex flex-col items-center text-center w-full max-w-4xl mx-auto">
           <h1 className="font-syne font-semibold text-[40px] sm:text-[54px] leading-[0.95] tracking-[-0.04em] md:text-[76px] lg:text-[95px] text-white flex flex-col items-center mb-10">
             <div className="overflow-hidden"><span className="hero-line-anim block pb-[0.08em]">{t("Parlons de", "لنتحدث عن")}</span></div>
@@ -279,35 +274,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="mb-2">
-                  <input ref={emailRef} type="email" placeholder={t("Email *", "البريد الإلكتروني *")} required className={inputClass} />
-                </div>
-
-                <div className="mb-2">
                   <input ref={phoneRef} type="tel" placeholder={t("Téléphone", "الهاتف")} className={inputClass} />
-                </div>
-
-                <div className="mb-2">
-                  <input ref={cityRef} type="text" placeholder={t("Ville / Région", "المدينة / المنطقة")} className={inputClass} />
-                </div>
-
-                <div className="mb-8 relative">
-                  <select 
-                    ref={serviceRef}
-                    required 
-                    className={`${inputClass} cursor-pointer`}
-                    defaultValue=""
-                  >
-                    <option value="" disabled className="text-dark-bg">{t("Choisir un service...", "اختر خدمة...")}</option>
-                    <option value="pv" className="text-dark-bg">{t("Installation Solaire PV", "تركيب الطاقة الشمسية الكهروضوئية")}</option>
-                    <option value="pompage" className="text-dark-bg">{t("Pompage Solaire", "ضخ شمسي")}</option>
-                    <option value="chauffe" className="text-dark-bg">{t("Chauffe-eau Solaire", "سخان المياه الشمسي")}</option>
-                    <option value="maintenance" className="text-dark-bg">{t("Maintenance & SAV", "الصيانة وخدمة ما بعد البيع")}</option>
-                    <option value="autre" className="text-dark-bg">{t("Autre", "أخرى")}</option>
-                  </select>
-                  {/* Custom Chevron */}
-                  <div className={`absolute top-1/2 -translate-y-1/2 ${lang === 'ar' ? 'left-4' : 'right-4'} pointer-events-none text-brand-gold text-[12px]`}>
-                    ▼
-                  </div>
                 </div>
 
                 <div className="mb-8">
